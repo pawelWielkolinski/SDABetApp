@@ -9,5 +9,8 @@
         <module name="SDABetApp" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="SDABetApp" target="1.8" />
+    </bytecodeTargetLevel>
   </component>
 </project>
