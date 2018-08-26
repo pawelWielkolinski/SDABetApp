@@ -12,6 +12,7 @@ public class Main {
 
 //  http://api.football-data.org/v2/competitions/2001/matches?stage=group_stage
 //  http://api.football-data.org/v2/competitions/2001/matches?dateFrom=2017-09-12&dateTo=2017-09-13
+//  http://api.football-data.org/v2/matches?dateFrom=2017-09-12&dateTo=2017-09-13&competitions=2001
 
     private static OkHttpClient okHttpClient;
     private static Request request;
@@ -19,7 +20,6 @@ public class Main {
     private static ObjectMapper objectMapper;
 
     public static void main(String[] args) {
-
 
 
     }
