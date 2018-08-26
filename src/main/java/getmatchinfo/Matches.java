@@ -9,5 +9,6 @@ import java.util.List;
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class Matches {
 
+    private int count;
     private List<Match> matches;
 }

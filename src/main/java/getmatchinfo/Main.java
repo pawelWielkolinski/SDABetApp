@@ -19,7 +19,7 @@ public class Main {
     private static OkHttpClient okHttpClient = new OkHttpClient();
     private static Request request;
     private static Response response;
-    private static ObjectMapper objectMapper;
+    private static ObjectMapper objectMapper = new ObjectMapper();
 
     public static void main(String[] args) throws IOException {
 
@@ -34,8 +34,12 @@ public class Main {
         int code = response.code();
 
         System.out.println(code);
-        System.out.println(resp);
+        Matches matches = objectMapper.readValue(resp, Matches.class);
 
+        for (Match match : matches.getMatches()) {
+            System.out.println(match);
+
+        }
     }
 
 }
