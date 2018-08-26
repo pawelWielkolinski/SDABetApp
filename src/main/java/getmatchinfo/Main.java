@@ -37,7 +37,7 @@ public class Main {
         Matches matches = objectMapper.readValue(resp, Matches.class);
 
         for (Match match : matches.getMatches()) {
-            System.out.println(match);
+            System.out.println(match.toString());
 
         }
     }
