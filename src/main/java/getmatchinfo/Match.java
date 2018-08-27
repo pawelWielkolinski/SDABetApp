@@ -18,6 +18,14 @@ public class Match {
     private AwayTeam awayTeam;
     private Score score;
 
+    public String getDate () {
+        return utcDate.substring(0,10);
+    }
+
+    public String getTime(){
+        return utcDate.substring(11,19);
+    }
+
     @Override
     public String toString() {
         return "UEFA Champions League \n"+

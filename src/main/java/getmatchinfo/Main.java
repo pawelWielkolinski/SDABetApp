@@ -44,11 +44,15 @@ public class Main {
 
         for (Match match : matches.getMatches()) {
 
-            matchesRecord.setHomeTeam(match.getHomeTeam().getName());
-            matchesRecord.setAwayTeam(match.getAwayTeam().getName());
-            matchesRecord.setHomeTeamGoals(match.getScore().getFullTime().getHomeTeam());
-            matchesRecord.setAwayTeamGoals(match.getScore().getFullTime().getAwayTeam());
-            matchRepository.insert(matchesRecord);
+//            matchesRecord.setIdMatch(match.getId());
+//            matchesRecord.setHomeTeam(match.getHomeTeam().getName());
+//            matchesRecord.setAwayTeam(match.getAwayTeam().getName());
+//            matchesRecord.setHomeTeamGoals(match.getScore().getFullTime().getHomeTeam());
+//            matchesRecord.setAwayTeamGoals(match.getScore().getFullTime().getAwayTeam());
+//            matchRepository.insert(matchesRecord);
+
+            System.out.println(match.getDate());
+            System.out.println(match.getTime());
 
         }
     }
