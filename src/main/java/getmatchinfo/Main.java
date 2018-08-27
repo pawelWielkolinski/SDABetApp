@@ -4,6 +4,8 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.squareup.okhttp.OkHttpClient;
 import com.squareup.okhttp.Request;
 import com.squareup.okhttp.Response;
+import db.data.MatchRepository;
+import db.data.generated.tables.records.MatchesRecord;
 
 import java.io.IOException;
 
@@ -36,8 +38,17 @@ public class Main {
         System.out.println(code);
         Matches matches = objectMapper.readValue(resp, Matches.class);
 
+        MatchRepository matchRepository = new MatchRepository();
+        MatchesRecord matchesRecord = new MatchesRecord();
+
+
         for (Match match : matches.getMatches()) {
-            System.out.println(match.toString());
+
+            matchesRecord.setHomeTeam(match.getHomeTeam().getName());
+            matchesRecord.setAwayTeam(match.getAwayTeam().getName());
+            matchesRecord.setHomeTeamGoals(match.getScore().getFullTime().getHomeTeam());
+            matchesRecord.setAwayTeamGoals(match.getScore().getFullTime().getAwayTeam());
+            matchRepository.insert(matchesRecord);
 
         }
     }

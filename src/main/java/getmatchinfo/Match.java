@@ -10,6 +10,7 @@ import lombok.Setter;
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class Match {
 
+    private Integer id;
     private String utcDate;
     private String stage;
     private String group;
