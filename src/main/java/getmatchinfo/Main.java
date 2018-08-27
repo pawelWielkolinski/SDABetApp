@@ -45,7 +45,6 @@ public class Main {
         MatchRepository matchRepository = new MatchRepository();
         MatchesRecord matchesRecord = new MatchesRecord();
 
-
         for (Match match : matches.getMatches()) {
 
             matchesRecord.setIdMatch(match.getId());
