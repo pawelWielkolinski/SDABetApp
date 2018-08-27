@@ -39,7 +39,7 @@ import org.jooq.impl.TableImpl;
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class Matches extends TableImpl<MatchesRecord> {
 
-    private static final long serialVersionUID = -900801168;
+    private static final long serialVersionUID = 1007117713;
 
     /**
      * The reference instance of <code>matches</code>
@@ -82,7 +82,7 @@ public class Matches extends TableImpl<MatchesRecord> {
     /**
      * The column <code>matches.start_date</code>.
      */
-    public final TableField<MatchesRecord, Timestamp> START_DATE = createField("start_date", org.jooq.impl.SQLDataType.TIMESTAMP.nullable(false), this, "");
+    public final TableField<MatchesRecord, Timestamp> START_DATE = createField("start_date", org.jooq.impl.SQLDataType.TIMESTAMP, this, "");
 
     /**
      * Create a <code>matches</code> table reference

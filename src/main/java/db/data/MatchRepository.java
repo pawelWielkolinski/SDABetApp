@@ -1,6 +1,5 @@
 package db.data;
 
-import com.google.common.base.Strings;
 import db.data.generated.tables.records.MatchesRecord;
 import org.jooq.DSLContext;
 
