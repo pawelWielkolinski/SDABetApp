@@ -7,7 +7,11 @@ import com.squareup.okhttp.Response;
 import db.data.MatchRepository;
 import db.data.generated.tables.records.MatchesRecord;
 
+
 import java.io.IOException;
+import java.sql.Date;
+import java.sql.Time;
+
 
 public class Main {
 
@@ -44,15 +48,14 @@ public class Main {
 
         for (Match match : matches.getMatches()) {
 
-//            matchesRecord.setIdMatch(match.getId());
-//            matchesRecord.setHomeTeam(match.getHomeTeam().getName());
-//            matchesRecord.setAwayTeam(match.getAwayTeam().getName());
-//            matchesRecord.setHomeTeamGoals(match.getScore().getFullTime().getHomeTeam());
-//            matchesRecord.setAwayTeamGoals(match.getScore().getFullTime().getAwayTeam());
-//            matchRepository.insert(matchesRecord);
-
-            System.out.println(match.getDate());
-            System.out.println(match.getTime());
+            matchesRecord.setIdMatch(match.getId());
+            matchesRecord.setHomeTeam(match.getHomeTeam().getName());
+            matchesRecord.setAwayTeam(match.getAwayTeam().getName());
+            matchesRecord.setHomeTeamGoals(match.getScore().getFullTime().getHomeTeam());
+            matchesRecord.setAwayTeamGoals(match.getScore().getFullTime().getAwayTeam());
+            matchesRecord.setStartDate(Date.valueOf(match.getDate()));
+            matchesRecord.setStartTime(Time.valueOf(match.getTime()));
+            matchRepository.insert(matchesRecord);
 
         }
     }

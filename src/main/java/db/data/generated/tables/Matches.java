@@ -9,7 +9,8 @@ import db.data.generated.Indexes;
 import db.data.generated.Keys;
 import db.data.generated.tables.records.MatchesRecord;
 
-import java.sql.Timestamp;
+import java.sql.Date;
+import java.sql.Time;
 import java.util.Arrays;
 import java.util.List;
 
@@ -39,7 +40,7 @@ import org.jooq.impl.TableImpl;
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class Matches extends TableImpl<MatchesRecord> {
 
-    private static final long serialVersionUID = 1007117713;
+    private static final long serialVersionUID = -941269625;
 
     /**
      * The reference instance of <code>matches</code>
@@ -82,7 +83,12 @@ public class Matches extends TableImpl<MatchesRecord> {
     /**
      * The column <code>matches.start_date</code>.
      */
-    public final TableField<MatchesRecord, Timestamp> START_DATE = createField("start_date", org.jooq.impl.SQLDataType.TIMESTAMP, this, "");
+    public final TableField<MatchesRecord, Date> START_DATE = createField("start_date", org.jooq.impl.SQLDataType.DATE, this, "");
+
+    /**
+     * The column <code>matches.start_time</code>.
+     */
+    public final TableField<MatchesRecord, Time> START_TIME = createField("start_time", org.jooq.impl.SQLDataType.TIME.nullable(false), this, "");
 
     /**
      * Create a <code>matches</code> table reference
