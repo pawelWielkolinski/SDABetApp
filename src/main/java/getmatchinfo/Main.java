@@ -7,11 +7,9 @@ import com.squareup.okhttp.Response;
 import db.data.MatchRepository;
 import db.data.generated.tables.records.MatchesRecord;
 
-
 import java.io.IOException;
 import java.sql.Date;
 import java.sql.Time;
-
 
 public class Main {
 
@@ -44,6 +42,7 @@ public class Main {
 
         MatchRepository matchRepository = new MatchRepository();
         MatchesRecord matchesRecord = new MatchesRecord();
+
 
         for (Match match : matches.getMatches()) {
 
