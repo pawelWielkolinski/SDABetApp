@@ -46,16 +46,27 @@ public class MatchesModel {
         MatchRepository matchRepository = new MatchRepository();
         MatchesRecord matchesRecord = new MatchesRecord();
 
+
         for (Match match : matches.getMatches()) {
 
-            matchesRecord.setIdMatch(match.getId());
-            matchesRecord.setHomeTeam(match.getHomeTeam().getName());
-            matchesRecord.setAwayTeam(match.getAwayTeam().getName());
-            matchesRecord.setHomeTeamGoals(match.getScore().getFullTime().getHomeTeam());
-            matchesRecord.setAwayTeamGoals(match.getScore().getFullTime().getAwayTeam());
-            matchesRecord.setStartDate(Date.valueOf(match.getDate()));
-            matchesRecord.setStartTime(Time.valueOf(match.getTime()));
-            matchRepository.insert(matchesRecord);
+            if(matchesRecord.getIdMatch().equals(match.getId())) {
+                matchesRecord.setHomeTeam(match.getHomeTeam().getName());
+                matchesRecord.setAwayTeam(match.getAwayTeam().getName());
+                matchesRecord.setHomeTeamGoals(match.getScore().getFullTime().getHomeTeam());
+                matchesRecord.setAwayTeamGoals(match.getScore().getFullTime().getAwayTeam());
+                matchesRecord.setStartDate(Date.valueOf(match.getDate()));
+                matchesRecord.setStartTime(Time.valueOf(match.getTime()));
+                matchRepository.insert(matchesRecord);
+            }else {
+                matchesRecord.setIdMatch(match.getId());
+                matchesRecord.setHomeTeam(match.getHomeTeam().getName());
+                matchesRecord.setAwayTeam(match.getAwayTeam().getName());
+                matchesRecord.setHomeTeamGoals(match.getScore().getFullTime().getHomeTeam());
+                matchesRecord.setAwayTeamGoals(match.getScore().getFullTime().getAwayTeam());
+                matchesRecord.setStartDate(Date.valueOf(match.getDate()));
+                matchesRecord.setStartTime(Time.valueOf(match.getTime()));
+                matchRepository.insert(matchesRecord);
+            }
 
         }
     }
