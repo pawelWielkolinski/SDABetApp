@@ -49,9 +49,8 @@ public class MatchesModel {
 
         for (Match match : matches.getMatches()) {
 
-            if(matchesRecord.getIdMatch().equals(match.getId())) {
-                matchesRecord.setHomeTeam(match.getHomeTeam().getName());
-                matchesRecord.setAwayTeam(match.getAwayTeam().getName());
+            if(matchRepository.getById(match.getId())!=null) {
+                matchesRecord = matchRepository.getById(match.getId());
                 matchesRecord.setHomeTeamGoals(match.getScore().getFullTime().getHomeTeam());
                 matchesRecord.setAwayTeamGoals(match.getScore().getFullTime().getAwayTeam());
                 matchesRecord.setStartDate(Date.valueOf(match.getDate()));

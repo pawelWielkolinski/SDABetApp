@@ -1,5 +1,7 @@
 package db.data;
 
+import db.data.generated.Tables;
+import db.data.generated.tables.Matches;
 import db.data.generated.tables.records.MatchesRecord;
 import org.jooq.DSLContext;
 
@@ -22,6 +24,20 @@ public class MatchRepository extends DatabaseAccess {
             record.refresh();
             return record.getIdMatch();
 
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public MatchesRecord getById(Integer id) {
+        try (Connection conn = connection()) {
+            DSLContext ctx = jooq(conn);
+
+            Matches match = Tables.MATCHES;
+
+            return ctx.selectFrom(match)
+                    .where(match.ID_MATCH.eq(id))
+                    .fetchOne();
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
