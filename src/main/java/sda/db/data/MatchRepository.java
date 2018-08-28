@@ -59,4 +59,22 @@ public class MatchRepository extends DatabaseAccess {
             throw new RuntimeException(e);
         }
     }
+
+    public Result<MatchesRecord> getByTeamName(String team) {
+
+        try (Connection conn = connection();) {
+            DSLContext ctx = jooq(conn);
+
+            Matches match = Tables.MATCHES;
+
+            return ctx.selectFrom(match)
+                    .where(match.AWAY_TEAM.contains(team))
+                    .or(match.HOME_TEAM.contains(team))
+                    .fetch();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+
 }
