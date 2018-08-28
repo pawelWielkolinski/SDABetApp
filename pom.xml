@@ -205,14 +205,14 @@
                         <!-- Configure the database connection here -->
                         <jdbc>
                             <driver>org.sqlite.JDBC</driver>
-                            <url>jdbc:sqlite:src/main/resources/database.db</url>
+                            <url>jdbc:sqlite:src/main/resources/database.sda.db</url>
                             <user></user>
                             <password></password>
 
                             <!-- You can also pass user/password and other JDBC properties in the optional properties tag: -->
                             <!--<properties>-->
-                            <!--<property><key>user</key><value>[db-user]</value></property>-->
-                            <!--<property><key>password</key><value>[db-password]</value></property>-->
+                            <!--<property><key>user</key><value>[sda.db-user]</value></property>-->
+                            <!--<property><key>password</key><value>[sda.db-password]</value></property>-->
                             <!--</properties>-->
                         </jdbc>
 
@@ -262,7 +262,7 @@
                                      jOOQ may append the schema name to this package if generating multiple schemas,
                                      e.g. org.jooq.your.packagename.schema1
                                           org.jooq.your.packagename.schema2 -->
-                                <packageName>db.data.generated</packageName>
+                                <packageName>sda.db.data.generated</packageName>
 
                                 <!-- The destination directory of your generated classes -->
                                 <directory>

@@ -1,8 +1,8 @@
-package db.data;
+package sda.db.data;
 
-import db.data.generated.Tables;
-import db.data.generated.tables.Matches;
-import db.data.generated.tables.records.MatchesRecord;
+import sda.db.data.generated.Tables;
+import sda.db.data.generated.tables.Matches;
+import sda.db.data.generated.tables.records.MatchesRecord;
 import org.jooq.DSLContext;
 
 import java.sql.Connection;

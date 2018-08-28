@@ -1,4 +1,4 @@
-package getmatchinfo;
+package sda.getmatchinfo;
 
 import lombok.Data;
 

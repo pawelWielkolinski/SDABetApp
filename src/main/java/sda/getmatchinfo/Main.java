@@ -1,6 +1,6 @@
-package getmatchinfo;
+package sda.getmatchinfo;
 
-import getmatchinfo.methods.MatchesModel;
+import sda.getmatchinfo.methods.MatchesModel;
 
 import java.io.IOException;
 
