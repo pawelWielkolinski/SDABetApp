@@ -1,16 +1,8 @@
 package getmatchinfo;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.squareup.okhttp.OkHttpClient;
-import com.squareup.okhttp.Request;
-import com.squareup.okhttp.Response;
-import db.data.MatchRepository;
-import db.data.generated.tables.records.MatchesRecord;
 import getmatchinfo.methods.MatchesModel;
 
 import java.io.IOException;
-import java.sql.Date;
-import java.sql.Time;
 
 public class Main {
 

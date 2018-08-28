@@ -12,8 +12,6 @@ import getmatchinfo.Matches;
 import java.io.IOException;
 import java.sql.Date;
 import java.sql.Time;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
 
 public class MatchesModel {
 
@@ -24,8 +22,6 @@ public class MatchesModel {
     private Request request;
     private Response response;
     private ObjectMapper objectMapper = new ObjectMapper();
-
-    private DateFormat format = new SimpleDateFormat("yyyy-MM-dd");
 
     public Matches getMatchesFromApi (String dateFrom, String dateTo) throws IOException {
         request = new Request.Builder()
