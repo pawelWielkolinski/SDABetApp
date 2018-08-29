@@ -1,4 +1,4 @@
-package sda.match;
+package sda.match.model;
 
 import lombok.Data;
 
