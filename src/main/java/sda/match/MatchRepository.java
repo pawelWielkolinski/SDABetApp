@@ -1,6 +1,7 @@
-package sda.db.data;
+package sda.match;
 
 import org.jooq.Result;
+import sda.db.data.DatabaseAccess;
 import sda.db.data.generated.Tables;
 import sda.db.data.generated.tables.Matches;
 import sda.db.data.generated.tables.records.MatchesRecord;

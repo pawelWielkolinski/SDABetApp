@@ -1,6 +1,7 @@
-package sda.getmatchinfo;
+package sda.match;
 
-import sda.getmatchinfo.methods.MatchesModel;
+import sda.match.model.Matches;
+import sda.match.model.MatchesModel;
 
 import java.io.IOException;
 
@@ -13,7 +14,7 @@ public class Main {
     public static void main(String[] args) throws IOException {
 
         MatchesModel matchesModel = new MatchesModel();
-        Matches matchesFromApi = matchesModel.getMatchesFromApi("2017-07-01","2017-07-10");
+        Matches matchesFromApi = matchesModel.getMatchesFromApi("2018-08-28","2018-08-28");
         matchesModel.insertMatchesToDatabase(matchesFromApi);
     }
 

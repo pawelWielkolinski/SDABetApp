@@ -1,4 +1,4 @@
-package sda.getmatchinfo;
+package sda.match.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Data;
