@@ -1,4 +1,4 @@
-package sda.getmatchinfo.methods;
+package sda.match;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.squareup.okhttp.OkHttpClient;
@@ -6,8 +6,6 @@ import com.squareup.okhttp.Request;
 import com.squareup.okhttp.Response;
 import sda.db.data.MatchRepository;
 import sda.db.data.generated.tables.records.MatchesRecord;
-import sda.getmatchinfo.Match;
-import sda.getmatchinfo.Matches;
 
 import java.io.IOException;
 import java.sql.Date;
