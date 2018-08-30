@@ -17,7 +17,7 @@ public class MatchController {
 
     @RequestMapping("/")
     public String home(Model model) {
-        model.addAttribute("MatchDate", new MatchDate());
+        model.addAttribute("matchDate", new MatchDate());
         return "index";
     }
 
