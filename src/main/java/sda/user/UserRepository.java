@@ -2,6 +2,7 @@ package sda.user;
 
 import com.google.common.base.Strings;
 import org.jooq.DSLContext;
+import org.springframework.stereotype.Repository;
 import sda.db.data.DatabaseAccess;
 import sda.db.data.generated.Tables;
 import sda.db.data.generated.tables.Users;
@@ -12,11 +13,10 @@ import java.sql.SQLException;
 
 import static sda.db.data.DatabaseAccess.connection;
 
+@Repository("userRepository")
 public class UserRepository extends DatabaseAccess {
 
-    public Integer insert(UsersRecord record) {
-        return storeUser(record);
-    }
+
 
     public Integer storeUser(UsersRecord record) {
         try (Connection conn = connection()) {
