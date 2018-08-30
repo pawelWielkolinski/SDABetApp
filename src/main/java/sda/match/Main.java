@@ -15,7 +15,7 @@ public class Main {
     public static void main(String[] args) throws IOException {
 
         MatchesModel matchesModel = new MatchesModel();
-        Matches matchesFromApi = matchesModel.getMatchesFromApi("2018-08-28","2018-08-28");
+        Matches matchesFromApi = matchesModel.getMatchesFromApi("2018-08-01","2018-08-10");
         matchesModel.insertMatchesToDatabase(matchesFromApi);
 
 

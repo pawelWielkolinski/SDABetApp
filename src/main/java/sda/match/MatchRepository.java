@@ -46,7 +46,7 @@ public class MatchRepository extends DatabaseAccess {
         }
     }
 
-    public Result<MatchesRecord> getByDate(String dateFrom, String date) {
+    public Result<MatchesRecord> getByDate(String dateFrom, String dateTo) {
 
         try (Connection conn = connection();) {
             DSLContext ctx = jooq(conn);
@@ -54,7 +54,7 @@ public class MatchRepository extends DatabaseAccess {
             Matches match = Tables.MATCHES;
 
             return ctx.selectFrom(match)
-                    .where(match.START_DATE.eq(Date.valueOf(date)))
+                    .where(match.START_DATE.between(Date.valueOf(dateFrom),Date.valueOf(dateTo)))
                     .fetch();
         } catch (SQLException e) {
             throw new RuntimeException(e);

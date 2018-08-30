@@ -1,6 +1,5 @@
 package sda.user;
 
-import com.google.common.base.Strings;
 import org.jooq.DSLContext;
 import org.springframework.stereotype.Repository;
 import sda.db.data.DatabaseAccess;
@@ -10,8 +9,6 @@ import sda.db.data.generated.tables.records.UsersRecord;
 
 import java.sql.Connection;
 import java.sql.SQLException;
-
-import static sda.db.data.DatabaseAccess.connection;
 
 @Repository("userRepository")
 public class UserRepository extends DatabaseAccess {

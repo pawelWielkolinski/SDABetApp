@@ -6,8 +6,10 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import sda.db.data.generated.tables.records.MatchesRecord;
 
 import java.io.IOException;
+import java.util.List;
 
 @Controller
 public class MatchController {
@@ -23,7 +25,7 @@ public class MatchController {
 
     @PostMapping("/update")
     public String update(@ModelAttribute MatchDate matchDate, Model model) throws IOException {
-        String matches = matchServices.show(matchDate.getDateFrom(), matchDate.getDateTo());
+        List<MatchesRecord> matches = matchServices.show(matchDate.getDateFrom(), matchDate.getDateTo());
 
         model.addAttribute("matches", matches);
         return "matches";

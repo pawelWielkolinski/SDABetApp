@@ -7,7 +7,7 @@ public class Main {
 
         MatchRepository repository = new MatchRepository();
 
-        System.out.println(repository.getByTeamName("FC"));
+        System.out.println(repository.getByDate("2018-08-01","2018-08-10"));
 
     }
 }
