@@ -9,13 +9,14 @@
 </head>
 <body>
 <section layout:fragment="content">
-
     <div>
-
-        WITAJ w index.html
-
+        <h2>Pobierz mecze z zakresu 10 dni</h2>
+        <form action="#" th:action="@{/update}" th:object="${matchDate}" method="post">
+            <p>dateFrom: <input type="text" th:field="*{dateFrom}" /></p>
+            <p>dateTo: <input type="text" th:field="*{dateTo}" /></p>
+            <p><input type="submit" value="Submit" /> <input type="reset" value="Reset" /></p>
+        </form>
     </div>
-
 </section>
 </body>
 </html>

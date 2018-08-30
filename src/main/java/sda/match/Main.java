@@ -4,6 +4,7 @@ import sda.match.model.Matches;
 import sda.match.model.MatchesModel;
 
 import java.io.IOException;
+import java.time.LocalDate;
 
 public class Main {
 
@@ -16,6 +17,8 @@ public class Main {
         MatchesModel matchesModel = new MatchesModel();
         Matches matchesFromApi = matchesModel.getMatchesFromApi("2018-08-28","2018-08-28");
         matchesModel.insertMatchesToDatabase(matchesFromApi);
+
+
     }
 
 }

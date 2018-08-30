@@ -46,7 +46,7 @@ public class MatchRepository extends DatabaseAccess {
         }
     }
 
-    public Result<MatchesRecord> getByDate(String date) {
+    public Result<MatchesRecord> getByDate(String dateFrom, String date) {
 
         try (Connection conn = connection();) {
             DSLContext ctx = jooq(conn);
