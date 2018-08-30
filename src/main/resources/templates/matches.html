@@ -13,23 +13,22 @@
     <th:block th:each="match :${matches}">
     <div class="row">
         <div class="col-md">
-            HOME TEAM
             <p th:text="${match.getHomeTeam()}" />
         </div>
         <div class="col-md">
-            AWAY TEAM
+            <p th:text="${match.getAwayTeam()}" />
         </div>
         <div class="col-sm">
-            HOME TEAM GOALS
+            <p th:text="${match.getHomeTeamGoals()}" />
         </div>
         <div class="col-sm">
-            AWAY TEAM GOALS
+            <p th:text="${match.getAwayTeamGoals()}" />
         </div>
         <div class="col-sm">
-            START DATE
+            <p th:text="${match.getStartDate()}" />
         </div>
         <div class="col-sm">
-            START TIME
+            <p th:text="${match.getStartTime()}" />
         </div>
         <div class="col-sm">
             BUTTON
