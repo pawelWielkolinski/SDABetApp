@@ -1,27 +1,25 @@
 package sda.match;
 
 import org.springframework.stereotype.Service;
+import sda.db.data.generated.tables.records.MatchesRecord;
 import sda.match.model.Match;
 import sda.match.model.Matches;
 import sda.match.model.MatchesModel;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 @Service
 public class MatchServices {
-    public String show(String dateFrom, String dateTo) throws IOException {
+    public List<MatchesRecord> show(String dateFrom, String dateTo) throws IOException {
+        MatchRepository matchRepository = new MatchRepository();
         MatchesModel matchesModel = new MatchesModel();
-        StringBuffer stringBuffer = new StringBuffer();
-        String result;
+        matchesModel.insertMatchesToDatabase(matchesModel.getMatchesFromApi(dateFrom,dateTo));
 
-        Matches matches = matchesModel.getMatchesFromApi(dateFrom, dateTo);
+        List<MatchesRecord> matches = new ArrayList<>();
+        matches = matchRepository.getByDate(dateFrom,dateTo);
 
-        for (Match match : matches.getMatches()) {
-            stringBuffer.append(match.toString());
-        }
-
-        result = String.valueOf(stringBuffer);
-
-        return result;
+        return matches;
     }
 }
