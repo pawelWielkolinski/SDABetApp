@@ -42,10 +42,20 @@
             <p th:text="${match.getAwayTeam()}" />
         </div>
         <div class="col-sm">
-            <p th:text="${match.getHomeTeamGoals()}" />
+            <div th:if="${match.getHomeTeamGoals() == null}">
+                <p th:text="'Brak danych'" />
+            </div>
+            <div th:unless="${match.getHomeTeamGoals() == null}">
+                <p th:text="${match.getHomeTeamGoals()}" />
+            </div>
         </div>
         <div class="col-sm">
-            <p th:text="${match.getAwayTeamGoals()}" />
+            <div th:if="${match.getAwayTeamGoals() == null}">
+                <p th:text="'Brak danych'" />
+            </div>
+            <div th:unless="${match.getAwayTeamGoals() == null}">
+                <p th:text="${match.getAwayTeamGoals()}" />
+            </div>
         </div>
         <div class="col-sm">
             <p th:text="${match.getStartDate()}" />
