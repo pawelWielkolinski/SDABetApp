@@ -2,7 +2,6 @@ package sda.user;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import sda.db.data.generated.tables.Users;
 import sda.db.data.generated.tables.records.UsersRecord;
 
 @Service("userService")
@@ -27,8 +26,14 @@ public class UserService {
         userRepository.delete(id);
     }
 
-    public void saveUser(UsersRecord user){
-        userRepository.storeUser(user);
+    public void insertUserToDataBase(UserForm userForm){
+        UsersRecord usersRecord = new UsersRecord();
+        usersRecord.setUserName(userForm.getUserName());
+        usersRecord.setPassword(userForm.getPassword());
+        usersRecord.setEmail(userForm.getEmail());
+        userRepository.insert(usersRecord);
     }
+
+
 
 }

@@ -11,10 +11,14 @@ import sda.db.data.generated.tables.records.UsersRecord;
 import java.sql.Connection;
 import java.sql.SQLException;
 
-import static sda.db.data.DatabaseAccess.connection;
+
 
 @Repository("userRepository")
 public class UserRepository extends DatabaseAccess {
+
+    public Integer insert (UsersRecord record){
+        return storeUser(record);
+    }
 
 
 

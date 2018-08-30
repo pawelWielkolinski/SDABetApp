@@ -38,7 +38,7 @@ import sda.db.data.generated.tables.records.UsersRecord;
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class Users extends TableImpl<UsersRecord> {
 
-    private static final long serialVersionUID = 1231607400;
+    private static final long serialVersionUID = -1436105468;
 
     /**
      * The reference instance of <code>users</code>
@@ -56,7 +56,7 @@ public class Users extends TableImpl<UsersRecord> {
     /**
      * The column <code>users.id_user</code>.
      */
-    public final TableField<UsersRecord, Integer> ID_USER = createField("id_user", org.jooq.impl.SQLDataType.INTEGER.nullable(false), this, "");
+    public final TableField<UsersRecord, Integer> ID_USER = createField("id_user", org.jooq.impl.SQLDataType.INTEGER.nullable(false).defaultValue(org.jooq.impl.DSL.field("1", org.jooq.impl.SQLDataType.INTEGER)), this, "");
 
     /**
      * The column <code>users.user_name</code>.
