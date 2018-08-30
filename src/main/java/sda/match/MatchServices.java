@@ -14,6 +14,8 @@ import java.util.List;
 public class MatchServices {
     public List<MatchesRecord> show(String dateFrom, String dateTo) throws IOException {
         MatchRepository matchRepository = new MatchRepository();
+        MatchesModel matchesModel = new MatchesModel();
+        matchesModel.insertMatchesToDatabase(matchesModel.getMatchesFromApi(dateFrom,dateTo));
 
         List<MatchesRecord> matches = new ArrayList<>();
         matches = matchRepository.getByDate(dateFrom,dateTo);
