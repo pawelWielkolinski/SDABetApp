@@ -1,26 +1,12 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:th="http://www.thymeleaf.org"
-      xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout"
-      layout:decorator="layout">
+<html lang="en">
 <head>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
           integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
-    <title>SDABetApp</title>
-    <meta charset="UTF-8"/>
+    <meta charset="UTF-8">
+    <title>Title</title>
 </head>
 <body>
-<section layout:fragment="content">
-    <div>
-        <h2>Wyświetl mecze Ligi Mistrzów UEFA :</h2>
-        <form action="#" th:action="@{/update}" th:object="${matchDate}" method="post">
-            <p>dateFrom: <input type="date" th:field="*{dateFrom}" /></p>
-            <p>dateTo: <input type="date" th:field="*{dateTo}" /></p>
-            <p><input type="submit" value="Submit" /> <input type="reset" value="Reset" /></p>
-        </form>
-    </div>
-</section>
-
 
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
         integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"

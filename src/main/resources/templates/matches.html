@@ -9,7 +9,7 @@
 </head>
 <body>
 
-<div class="container, border border-primary">
+<div class="container">
     <div class="row">
         <div class="col-md">
             HOME TEAM
@@ -34,39 +34,50 @@
         </div>
     </div>
     <th:block th:each="match :${matches}">
-    <div class="row">
-        <div class="col-md">
-            <p th:text="${match.getHomeTeam()}" />
-        </div>
-        <div class="col-md">
-            <p th:text="${match.getAwayTeam()}" />
-        </div>
-        <div class="col-sm">
-            <div th:if="${match.getHomeTeamGoals() == null}">
-                <p th:text="'Brak danych'" />
+        <div class="row">
+            <div class="col-md">
+                <p th:text="${match.getHomeTeam()}"/>
             </div>
-            <div th:unless="${match.getHomeTeamGoals() == null}">
-                <p th:text="${match.getHomeTeamGoals()}" />
+            <div class="col-md">
+                <p th:text="${match.getAwayTeam()}"/>
+            </div>
+            <div class="col-sm">
+                <div th:if="${match.getHomeTeamGoals() == null}">
+                    <p th:text="'Brak danych'"/>
+                </div>
+                <div th:unless="${match.getHomeTeamGoals() == null}">
+                    <p th:text="${match.getHomeTeamGoals()}"/>
+                </div>
+            </div>
+            <div class="col-sm">
+                <div th:if="${match.getAwayTeamGoals() == null}">
+                    <p th:text="'Brak danych'"/>
+                </div>
+                <div th:unless="${match.getAwayTeamGoals() == null}">
+                    <p th:text="${match.getAwayTeamGoals()}"/>
+                </div>
+            </div>
+            <div class="col-sm">
+                <p th:text="${match.getStartDate()}"/>
+            </div>
+            <div class="col-sm">
+                <p th:text="${match.getStartTime()}"/>
+            </div>
+            <div class="col-sm">
+                <div th:if="${visible.get(match.getIdMatch())}">
+                    <div th:if="${session.getAttribute('isLogin')==true}">
+                        <form action="#" th:action="@{/bet.html}" method="post">
+                            <button type="submit" value="Obstaw ten mecz">Obstaw ten mecz</button>
+                        </form>
+                    </div>
+                    <div th:if="${session.getAttribute('isLogin')==false}">
+                        <form action="#" th:action="@{/login.html}" method="post">
+                            <button type="submit" value="Zaloguj się by obstawić mecz">Zaloguj się by obstawić mecz</button>
+                        </form>
+                    </div>
+                </div>
             </div>
         </div>
-        <div class="col-sm">
-            <div th:if="${match.getAwayTeamGoals() == null}">
-                <p th:text="'Brak danych'" />
-            </div>
-            <div th:unless="${match.getAwayTeamGoals() == null}">
-                <p th:text="${match.getAwayTeamGoals()}" />
-            </div>
-        </div>
-        <div class="col-sm">
-            <p th:text="${match.getStartDate()}" />
-        </div>
-        <div class="col-sm">
-            <p th:text="${match.getStartTime()}" />
-        </div>
-        <div class="col-sm">
-            BUTTON
-        </div>
-    </div>
     </th:block>
 </div>
 
