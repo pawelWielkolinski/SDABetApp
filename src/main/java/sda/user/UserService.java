@@ -14,6 +14,8 @@ public class UserService {
         this.userRepository = userRepository;
     }
 
+
+
     public UsersRecord findByEmail(String email){
         return userRepository.getUserByEmail(email);
     }

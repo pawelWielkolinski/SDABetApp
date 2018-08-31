@@ -28,7 +28,7 @@ public class RegisterController {
     }
 
     @PostMapping("/register")
-    public String saveRegister(@ModelAttribute UserForm userForm, Model model){
+    public String saveRegister(@ModelAttribute UserForm userForm){
         userService.insertUserToDataBase(userForm);
 
         return "registerSuccessful";
