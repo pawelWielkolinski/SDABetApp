@@ -64,14 +64,17 @@
                 <p th:text="${match.getStartTime()}"/>
             </div>
             <div class="col-sm">
-                <!--#request.session.getAttribute('isLogin') == true-->
-                <div th:if="${
-                match.getStartDate().after(#dates.createNow())}">
-                    <form action="#" th:action="@{/bet.html}" method="post">
-
-                        <button type="submit" value="Obstaw ten mecz"></button>
-
-                    </form>
+                <div th:if="${visible.get(match.getIdMatch())}">
+                    <div th:if="${session.getAttribute('isLogin')==true}">
+                        <form action="#" th:action="@{/bet.html}" method="post">
+                            <button type="submit" value="Obstaw ten mecz">Obstaw ten mecz</button>
+                        </form>
+                    </div>
+                    <div th:if="${session.getAttribute('isLogin')==false}">
+                        <form action="#" th:action="@{/login.html}" method="post">
+                            <button type="submit" value="Zaloguj się by obstawić mecz">Zaloguj się by obstawić mecz</button>
+                        </form>
+                    </div>
                 </div>
             </div>
         </div>
