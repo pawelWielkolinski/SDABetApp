@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import sda.db.data.generated.tables.records.MatchesRecord;
 
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.sql.Date;
 import java.time.LocalDate;
@@ -21,6 +22,7 @@ public class MatchController {
 
     @Autowired
     private MatchServices matchServices;
+//    private HttpSession session;
 
     @RequestMapping("/")
     public String home(Model model) {
@@ -43,9 +45,10 @@ public class MatchController {
 
             visibleButtons.put(match.getIdMatch(),visible);
         }
-
         model.addAttribute("visible", visibleButtons);
 
+//        boolean login = session.("isLogin")!=null;
+//        model.addAttribute("login", login);
         return "matches";
     }
 

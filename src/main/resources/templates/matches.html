@@ -65,13 +65,13 @@
             </div>
             <div class="col-sm">
                 <div th:if="${visible.get(match.getIdMatch())}">
-                    <div th:if="${session.getAttribute('isLogin')==true}">
-                        <form action="#" th:action="@{/bet.html}" method="post">
+                    <div th:unless="${session.isLogin==null}">
+                        <form action="bet.html">
                             <button type="submit" value="Obstaw ten mecz">Obstaw ten mecz</button>
                         </form>
                     </div>
-                    <div th:if="${session.getAttribute('isLogin')==false}">
-                        <form action="#" th:action="@{/login.html}" method="post">
+                    <div th:if="${session.isLogin==null}" >
+                        <form action="login.html" >
                             <button type="submit" value="Zaloguj się by obstawić mecz">Zaloguj się by obstawić mecz</button>
                         </form>
                     </div>
