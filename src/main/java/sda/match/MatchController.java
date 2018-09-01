@@ -22,7 +22,6 @@ public class MatchController {
 
     @Autowired
     private MatchServices matchServices;
-//    private HttpSession session;
 
     @RequestMapping("/")
     public String home(Model model) {
@@ -47,8 +46,6 @@ public class MatchController {
         }
         model.addAttribute("visible", visibleButtons);
 
-//        boolean login = session.("isLogin")!=null;
-//        model.addAttribute("login", login);
         return "matches";
     }
 
