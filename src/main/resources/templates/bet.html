@@ -11,20 +11,26 @@
 </head>
 <body>
 
-<form action="#" th:action="@{/bet}" th:object="${betForm}" method="post">
+<!--<form action="#" th:action="@{/submitBet}" th:object="${betForm}" method="post">-->
+<!--th:field="*{homeTeamScore}"-->
+<form>
     <div class="row">
         <div class="col">
-            <label for="HomeTeam"><p th:text="${}"/> score</label>
-            <input type="text" class="form-control" id="HomeTeam" value="0" th:field="*{homeTeamScore}">
+            <label for="HomeTeam"><p th:text="${betInfo.getHomeTeamName()}"/> score</label>
+            <input type="text" class="form-control" id="HomeTeam" value="0" >
         </div>
         <div class="col">
-            <label for="AwayTeam"><p th:text="${}"/> score</label>
-            <input type="text" class="form-control" id="AwayTeam" value="0" th:field="*{awayTeamScore}">
+            <label for="AwayTeam"><p th:text="${betInfo.getAwayTeamName()}"/> score</label>
+            <input type="text" class="form-control" id="AwayTeam" value="0" >
         </div>
     </div>
-    <div>
-        <button type="submit" class="btn btn-success">Submit</button>
-    </div>
+
+    <p th:text="${betInfo.getMatchId()}"/>
+    <p th:text="${betInfo.getUserId()}"/>
+
+    <!--<div>-->
+        <!--<button type="submit" class="btn btn-success">Submit</button>-->
+    <!--</div>-->
 </form>
 
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"

@@ -1,13 +1,17 @@
 package sda.match;
 
+import com.squareup.okhttp.Request;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import sda.bet.BetForm;
 import sda.db.data.generated.tables.records.MatchesRecord;
+import sda.match.model.Match;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.sql.Date;
@@ -22,6 +26,7 @@ public class MatchController {
 
     @Autowired
     private MatchServices matchServices;
+    private HttpSession session;
 
     @RequestMapping("/")
     public String home(Model model) {
@@ -47,6 +52,29 @@ public class MatchController {
         model.addAttribute("visible", visibleButtons);
 
         return "matches";
+    }
+
+    @RequestMapping("/matches")
+    public String getBetData (@ModelAttribute MatchesRecord match, Model model){
+
+        SelectMatchForm selectMatchForm = new SelectMatchForm();
+
+        selectMatchForm.setAwayTeamName(match.getAwayTeam());
+        selectMatchForm.setHomeTeamName(match.getHomeTeam());
+        selectMatchForm.setMatchId(match.getIdMatch());
+        selectMatchForm.setUserId((Integer) session.getAttribute("idUser"));
+
+        model.addAttribute("selectMatchForm", selectMatchForm);
+
+        return "matches";
+    }
+
+    @PostMapping("/selectMatchToBet")
+    public String selectMatchToBet (@ModelAttribute SelectMatchForm selectMatchForm, Model model){
+
+        model.addAttribute("betInfo",selectMatchForm);
+
+        return "bet";
     }
 
 }

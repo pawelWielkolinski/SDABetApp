@@ -1,16 +1,15 @@
-package sda.bet;
+package sda.match;
 
 import lombok.Getter;
 import lombok.Setter;
 
 @Getter
 @Setter
-public class BetForm {
+public class SelectMatchForm {
 
-    private Integer homeTeamScore;
-    private Integer awayTeamScore;
     private String homeTeamName;
     private String awayTeamName;
     private Integer userId;
     private Integer matchId;
+
 }
