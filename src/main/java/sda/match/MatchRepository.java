@@ -1,6 +1,7 @@
 package sda.match;
 
 import org.jooq.Result;
+import org.springframework.stereotype.Repository;
 import sda.db.data.DatabaseAccess;
 import sda.db.data.generated.Tables;
 import sda.db.data.generated.tables.Matches;
@@ -11,6 +12,7 @@ import java.sql.Connection;
 import java.sql.Date;
 import java.sql.SQLException;
 
+@Repository
 public class MatchRepository extends DatabaseAccess {
 
     public Integer insert(MatchesRecord record) {

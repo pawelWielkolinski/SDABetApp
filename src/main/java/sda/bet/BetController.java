@@ -5,7 +5,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
-import sda.match.SelectMatchForm;
 
 @Controller
 public class BetController {
@@ -14,9 +13,9 @@ public class BetController {
     private BetService betService;
 
     @RequestMapping("/bet")
-    public String setBet(@ModelAttribute SelectMatchForm selectMatchForm, Model model) {
+    public String setBet(@ModelAttribute BetForm betInfo, Model model) {
 
-        return "matches";
+        return "bet";
     }
 
 

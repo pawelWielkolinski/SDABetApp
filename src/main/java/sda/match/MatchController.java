@@ -1,6 +1,5 @@
 package sda.match;
 
-import com.squareup.okhttp.Request;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -9,12 +8,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import sda.bet.BetForm;
 import sda.db.data.generated.tables.records.MatchesRecord;
-import sda.match.model.Match;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
-import java.sql.Date;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.HashMap;
@@ -26,6 +22,7 @@ public class MatchController {
 
     @Autowired
     private MatchServices matchServices;
+    @Autowired
     private HttpSession session;
 
     @RequestMapping("/")
@@ -55,24 +52,24 @@ public class MatchController {
     }
 
     @RequestMapping("/matches")
-    public String getBetData (@ModelAttribute MatchesRecord match, Model model){
-
-        SelectMatchForm selectMatchForm = new SelectMatchForm();
-
-        selectMatchForm.setAwayTeamName(match.getAwayTeam());
-        selectMatchForm.setHomeTeamName(match.getHomeTeam());
-        selectMatchForm.setMatchId(match.getIdMatch());
-        selectMatchForm.setUserId((Integer) session.getAttribute("idUser"));
-
-        model.addAttribute("selectMatchForm", selectMatchForm);
-
+    public String selectMatch(Model model) {
+        model.addAttribute("matchToBet", new MatchToBet());
         return "matches";
     }
 
-    @PostMapping("/selectMatchToBet")
-    public String selectMatchToBet (@ModelAttribute SelectMatchForm selectMatchForm, Model model){
+    @PostMapping("/matchToBet")
+    public String matchToBet (@ModelAttribute MatchToBet matchToBet , Model model){
+        BetForm betForm = new BetForm();
+        MatchRepository matchRepository = new MatchRepository();
 
-        model.addAttribute("betInfo",selectMatchForm);
+        betForm.setHomeTeamName(matchRepository.getById(matchToBet.getIdToBet()).getHomeTeam());
+        betForm.setAwayTeamName(matchRepository.getById(matchToBet.getIdToBet()).getAwayTeam());
+        betForm.setMatchId(matchToBet.getIdToBet());
+        betForm.setUserId((Integer) session.getAttribute("idUser"));
+        betForm.setHomeTeamScore(0);
+        betForm.setAwayTeamScore(0);
+
+        model.addAttribute("betInfo", betForm);
 
         return "bet";
     }

@@ -43,7 +43,7 @@
             </div>
             <div class="col-sm">
                 <div th:if="${match.getHomeTeamGoals() == null}">
-                    <p th:text="'Brak danych'"/>
+                    <p th:text="'-'"/>
                 </div>
                 <div th:unless="${match.getHomeTeamGoals() == null}">
                     <p th:text="${match.getHomeTeamGoals()}"/>
@@ -51,7 +51,7 @@
             </div>
             <div class="col-sm">
                 <div th:if="${match.getAwayTeamGoals() == null}">
-                    <p th:text="'Brak danych'"/>
+                    <p th:text="'-'"/>
                 </div>
                 <div th:unless="${match.getAwayTeamGoals() == null}">
                     <p th:text="${match.getAwayTeamGoals()}"/>
@@ -66,10 +66,8 @@
             <div class="col-sm">
                 <div th:if="${visible.get(match.getIdMatch())}">
                     <div th:unless="${session.isLogin==null}">
-                        <form action="#" th:action="@{/selectMatchToBet}" th:object="${selectMatchForm}" method="post">
-                            <div>
+                        <form action="#" th:action="@{/matchToBet}" th:object="${matchToBet}" method="post">
                                 <button type="submit" class="btn btn-success">Obstaw ten mecz</button>
-                            </div>
                         </form>
                     </div>
                     <div th:if="${session.isLogin==null}" >
