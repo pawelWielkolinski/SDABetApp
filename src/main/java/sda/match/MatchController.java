@@ -8,6 +8,7 @@ import sda.bet.BetForm;
 import sda.bet.BetRepository;
 import sda.bet.BetService;
 import sda.db.data.generated.tables.records.MatchesRecord;
+import sda.user.UserService;
 
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
@@ -30,6 +31,7 @@ public class MatchController {
         model.addAttribute("matchDate", new MatchDate());
 
         BetService.givePoints();
+        UserService.addPoints();
 
         return "index";
     }

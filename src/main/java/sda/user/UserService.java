@@ -14,6 +14,9 @@ public class UserService {
         this.userRepository = userRepository;
     }
 
+    public static void addPoints() {
+
+    }
 
 
     public UsersRecord findByEmail(String email){

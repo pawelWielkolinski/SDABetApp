@@ -23,6 +23,9 @@ public class BetService {
             List<BetsRecord> betsWithoutPoints = betRepository.getBetsByMatchId(matchWitchScore.getIdMatch());
             for (BetsRecord betToGivePoints : betsWithoutPoints) {
                 givePointsToBets(matchWitchScore, betToGivePoints);
+
+                betRepository.insert(betToGivePoints);
+
             }
 
         }
@@ -34,18 +37,18 @@ public class BetService {
         Integer awayTeamGoals = matchWitchScore.getAwayTeamGoals();
         Integer awayTeamBet = betToGivePoints.getAwayTeamBet();
 
-        boolean fivePoint = homeTeamGoals.equals(homeTeamBet) &&
-                awayTeamGoals.equals(awayTeamBet);
+        boolean fivePoints = homeTeamGoals.compareTo(homeTeamBet)==0 &&
+                awayTeamGoals.compareTo(awayTeamBet)==0;
 
-        if(fivePoint) {
+        if(fivePoints) {
             betToGivePoints.setPoints(5);
         }
 
         boolean twoPoints = homeTeamGoals > awayTeamGoals && homeTeamBet > awayTeamBet
                 || homeTeamGoals < awayTeamGoals && homeTeamBet < awayTeamBet
-                || homeTeamGoals.equals(awayTeamGoals) && homeTeamBet.equals(awayTeamBet);
+                || homeTeamGoals.compareTo(awayTeamGoals)==0 && homeTeamBet.compareTo(awayTeamBet)==0;
 
-        if(twoPoints) {
+        if(twoPoints && !fivePoints) {
             betToGivePoints.setPoints(2);
         }
     }
