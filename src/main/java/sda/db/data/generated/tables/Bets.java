@@ -4,7 +4,7 @@
 package sda.db.data.generated.tables;
 
 
-import java.sql.Timestamp;
+import java.sql.Date;
 import java.util.Arrays;
 import java.util.List;
 
@@ -40,7 +40,7 @@ import sda.db.data.generated.tables.records.BetsRecord;
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class Bets extends TableImpl<BetsRecord> {
 
-    private static final long serialVersionUID = -1745656486;
+    private static final long serialVersionUID = -1571231280;
 
     /**
      * The reference instance of <code>bets</code>
@@ -58,7 +58,7 @@ public class Bets extends TableImpl<BetsRecord> {
     /**
      * The column <code>bets.id_bet</code>.
      */
-    public final TableField<BetsRecord, Integer> ID_BET = createField("id_bet", org.jooq.impl.SQLDataType.INTEGER.nullable(false), this, "");
+    public final TableField<BetsRecord, Integer> ID_BET = createField("id_bet", org.jooq.impl.SQLDataType.INTEGER.nullable(false).defaultValue(org.jooq.impl.DSL.field("1", org.jooq.impl.SQLDataType.INTEGER)), this, "");
 
     /**
      * The column <code>bets.id_match</code>.
@@ -88,7 +88,7 @@ public class Bets extends TableImpl<BetsRecord> {
     /**
      * The column <code>bets.create_date</code>.
      */
-    public final TableField<BetsRecord, Timestamp> CREATE_DATE = createField("create_date", org.jooq.impl.SQLDataType.TIMESTAMP.nullable(false), this, "");
+    public final TableField<BetsRecord, Date> CREATE_DATE = createField("create_date", org.jooq.impl.SQLDataType.DATE.nullable(false), this, "");
 
     /**
      * Create a <code>bets</code> table reference

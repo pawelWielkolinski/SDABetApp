@@ -3,9 +3,7 @@ package sda.match;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 import sda.bet.BetForm;
 import sda.db.data.generated.tables.records.MatchesRecord;
 
@@ -44,30 +42,24 @@ public class MatchController {
                     || (match.getStartDate().toLocalDate().compareTo(LocalDate.now()) == 0
                     && match.getStartTime().toLocalTime().isAfter(LocalTime.now()));
 
-            visibleButtons.put(match.getIdMatch(),visible);
+            visibleButtons.put(match.getIdMatch(), visible);
         }
+
         model.addAttribute("visible", visibleButtons);
-
-        return "matches";
-    }
-
-    @RequestMapping("/matches")
-    public String selectMatch(Model model) {
         model.addAttribute("matchToBet", new MatchToBet());
+
         return "matches";
     }
 
-    @PostMapping("/matchToBet")
-    public String matchToBet (@ModelAttribute MatchToBet matchToBet , Model model){
+    @PostMapping("/toBet")
+    public String toBet(@ModelAttribute MatchToBet matchToBet, Model model) {
         BetForm betForm = new BetForm();
         MatchRepository matchRepository = new MatchRepository();
 
-        betForm.setHomeTeamName(matchRepository.getById(matchToBet.getIdToBet()).getHomeTeam());
-        betForm.setAwayTeamName(matchRepository.getById(matchToBet.getIdToBet()).getAwayTeam());
-        betForm.setMatchId(matchToBet.getIdToBet());
+        betForm.setHomeTeamName(matchRepository.getById(matchToBet.getIdMatchToBet()).getHomeTeam());
+        betForm.setAwayTeamName(matchRepository.getById(matchToBet.getIdMatchToBet()).getAwayTeam());
+        betForm.setMatchId(matchToBet.getIdMatchToBet());
         betForm.setUserId((Integer) session.getAttribute("idUser"));
-        betForm.setHomeTeamScore(0);
-        betForm.setAwayTeamScore(0);
 
         model.addAttribute("betInfo", betForm);
 

@@ -7,5 +7,6 @@ import lombok.Setter;
 @Setter
 public class MatchToBet {
 
-    private Integer idToBet;
+    private Integer idMatchToBet;
+
 }

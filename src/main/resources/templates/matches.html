@@ -3,7 +3,7 @@
       xmlns:th="http://www.thymeleaf.org">
 <head>
     <title>Matches</title>
-    <meta charset="UTF-8"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
           integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
 </head>
@@ -66,19 +66,21 @@
             <div class="col-sm">
                 <div th:if="${visible.get(match.getIdMatch())}">
                     <div th:unless="${session.isLogin==null}">
-                        <form action="#" th:action="@{/matchToBet}" th:object="${matchToBet}" method="post">
-                                <button type="submit" class="btn btn-success">Obstaw ten mecz</button>
+                        <form action="#" th:action="@{/toBet}"
+                              th:object="${matchToBet}"
+                              method="post">
+                            <input type="hidden" th:value="${match.getIdMatch()}" th:attr="name='idMatchToBet'" />
+                            <button type="submit" class="btn btn-success">Obstaw ten mecz</button>
                         </form>
                     </div>
-                    <div th:if="${session.isLogin==null}" >
-                            <a href="/login">Zaloguj się</a>
+                    <div th:if="${session.isLogin==null}">
+                        <a href="/login">Zaloguj się</a>
                     </div>
                 </div>
             </div>
         </div>
     </th:block>
 </div>
-
 
 </p>
 <p>
