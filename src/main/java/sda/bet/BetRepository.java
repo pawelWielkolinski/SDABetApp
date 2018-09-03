@@ -55,4 +55,16 @@ public class BetRepository extends DatabaseAccess {
             throw new RuntimeException(e);
         }
     }
+
+    public BetsRecord getBetByMatchIdAndUserId(Integer matchId, Integer userId) {
+        try (Connection conn = connection()) {
+            DSLContext ctx = jooq(conn);
+            Bets bets = Tables.BETS;
+            return ctx.selectFrom(bets)
+                    .where(bets.ID_MATCH.equal(matchId).and(bets.ID_USER.equal(userId)))
+                    .fetchOne();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
 }

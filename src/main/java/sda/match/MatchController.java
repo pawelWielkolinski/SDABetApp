@@ -5,6 +5,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import sda.bet.BetForm;
+import sda.bet.BetRepository;
+import sda.bet.BetService;
 import sda.db.data.generated.tables.records.MatchesRecord;
 
 import javax.servlet.http.HttpSession;
@@ -26,6 +28,9 @@ public class MatchController {
     @RequestMapping("/")
     public String home(Model model) {
         model.addAttribute("matchDate", new MatchDate());
+
+        BetService.givePoints();
+
         return "index";
     }
 
@@ -47,6 +52,10 @@ public class MatchController {
 
         model.addAttribute("visible", visibleButtons);
         model.addAttribute("matchToBet", new MatchToBet());
+
+        BetRepository betRepository = new BetRepository();
+
+        model.addAttribute("betRepo", betRepository);
 
         return "matches";
     }

@@ -4,6 +4,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.squareup.okhttp.OkHttpClient;
 import com.squareup.okhttp.Request;
 import com.squareup.okhttp.Response;
+import sda.bet.BetRepository;
 import sda.db.data.generated.tables.records.MatchesRecord;
 import sda.match.MatchRepository;
 import sda.match.model.Match;

@@ -79,5 +79,21 @@ public class MatchRepository extends DatabaseAccess {
         }
     }
 
+    public Result<MatchesRecord> getByPresentScore() {
+
+        try (Connection conn = connection();) {
+            DSLContext ctx = jooq(conn);
+
+            Matches match = Tables.MATCHES;
+
+            return ctx.selectFrom(match)
+                    .where(match.AWAY_TEAM_GOALS.isNotNull())
+                    .and(match.HOME_TEAM_GOALS.isNotNull())
+                    .fetch();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
 
 }
