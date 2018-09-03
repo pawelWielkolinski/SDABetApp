@@ -22,9 +22,11 @@
     <tbody>
     <tr th:each="bets :${yourBets}">
         <th scope="row"><p th:text="${bets.getIdBet()}"/></th>
-        <td><p th:text="${bets.getIdMatch()}"/> vs <p th:text="${bets.getIdMatch()}"/></td>
-        <td><p th:text="${bets.getHomeTeamBet()}"/> - <p th:text="${bets.getAwayTeamBet()}"/></td>
-        <td><p th:text="${bets.getIdMatch()}"/> vs <p th:text="${bets.getIdMatch()}"/></td>
+        <td><p th:text="${matchRepo.getById(bets.getIdMatch()).getHomeTeam()}"/>vs
+            <p th:text="${matchRepo.getById(bets.getIdMatch()).getAwayTeam()}"/></td>
+        <td><p th:text="${bets.getHomeTeamBet()}"/>-<p th:text="${bets.getAwayTeamBet()}"/></td>
+        <td><p th:text="${matchRepo.getById(bets.getIdMatch()).getHomeTeamGoals()}"/>-
+            <p th:text="${matchRepo.getById(bets.getIdMatch()).getAwayTeamGoals()}"/></td>
         <td><p th:text="${bets.getPoints()}"/></td>
     </tr>
     </tbody>
