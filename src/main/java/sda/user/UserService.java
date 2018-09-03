@@ -14,7 +14,7 @@ public class UserService {
         this.userRepository = userRepository;
     }
 
-    public static void addPoints() {
+    public void addPoints() {
 
     }
 
