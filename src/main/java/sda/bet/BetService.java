@@ -13,14 +13,22 @@ public class BetService {
     public void saveBet(BetForm betInfo) {
 
         BetRepository betRepository = new BetRepository();
-
         BetsRecord betsRecord = new BetsRecord();
 
-        betsRecord.setHomeTeamBet(betInfo.getHomeTeamScore());
-        betsRecord.setAwayTeamBet(betInfo.getAwayTeamScore());
-        betsRecord.setIdMatch(betInfo.getMatchId());
-        betsRecord.setIdUser(betInfo.getUserId());
-        betsRecord.setCreateDate(Date.valueOf(LocalDate.now()));
+        if(betRepository.getBetByMatchIdAndUserId(betInfo.getMatchId(),betInfo.getUserId())==null) {
+
+            betsRecord.setHomeTeamBet(betInfo.getHomeTeamScore());
+            betsRecord.setAwayTeamBet(betInfo.getAwayTeamScore());
+            betsRecord.setIdMatch(betInfo.getMatchId());
+            betsRecord.setIdUser(betInfo.getUserId());
+            betsRecord.setCreateDate(Date.valueOf(LocalDate.now()));
+
+        }else{
+            betsRecord = betRepository.getBetByMatchIdAndUserId(betInfo.getMatchId(),betInfo.getUserId());
+            betsRecord.setCreateDate(Date.valueOf(LocalDate.now()));
+            betsRecord.setHomeTeamBet(betInfo.getHomeTeamScore());
+            betsRecord.setAwayTeamBet(betInfo.getAwayTeamScore());
+        }
 
         betRepository.storeBet(betsRecord);
 
