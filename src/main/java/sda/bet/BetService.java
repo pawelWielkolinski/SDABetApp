@@ -13,7 +13,7 @@ import java.util.List;
 @Service
 public class BetService {
 
-    public static void givePoints() {
+    public void givePoints() {
         MatchRepository matchRepository = new MatchRepository();
         BetRepository betRepository = new BetRepository();
 
@@ -31,7 +31,7 @@ public class BetService {
         }
     }
 
-    public static void givePointsToBets(MatchesRecord matchWitchScore, BetsRecord betToGivePoints) {
+    public void givePointsToBets(MatchesRecord matchWitchScore, BetsRecord betToGivePoints) {
         Integer homeTeamGoals = matchWitchScore.getHomeTeamGoals();
         Integer homeTeamBet = betToGivePoints.getHomeTeamBet();
         Integer awayTeamGoals = matchWitchScore.getAwayTeamGoals();

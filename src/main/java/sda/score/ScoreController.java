@@ -5,7 +5,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import sda.db.data.generated.tables.records.UsersRecord;
-
+import sda.user.UserRepository;
+import sda.user.UserService;
 
 import java.util.List;
 
@@ -15,10 +16,14 @@ public class ScoreController {
     @Autowired
     private ScoreService scoreService;
 
+    @Autowired
+    private UserService userService;
+
     @RequestMapping("/scores")
     public String scores (Model model){
         List<UsersRecord> results = scoreService.showScores();
 
+        userService.addPoints();
         model.addAttribute("scores",results);
 
 

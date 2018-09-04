@@ -67,4 +67,16 @@ public class BetRepository extends DatabaseAccess {
             throw new RuntimeException(e);
         }
     }
+
+    public List<BetsRecord> userBetsWithPoints(Integer idUser) {
+        try (Connection conn = connection()) {
+            DSLContext ctx = jooq(conn);
+            Bets bets = Tables.BETS;
+            return ctx.selectFrom(bets)
+                    .where(bets.POINTS.eq(5).or(bets.POINTS.eq(2))).and(bets.ID_USER.eq(idUser))
+                    .fetch();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
 }
