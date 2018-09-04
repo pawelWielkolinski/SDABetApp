@@ -47,14 +47,12 @@
                 </li>
             </ul>
         </ul>
-
-
-        <div class="row" th:if="${session.isLogin!=null}">
-            <div>
-                <p>Hello</p>
-            </div>
-            <div>
-                <p th:text="${#httpSession.getAttribute('userName')}"></p>
+        <div class="float-right">
+            <div class="container">
+                <div class="row" th:if="${session.isLogin!=null}">
+                    <div class="col-sm-8">Logged as:</div>
+                    <div class="col-sm-4" th:text="${#httpSession.getAttribute('userName')}"></div>
+                </div>
             </div>
         </div>
     </div>
