@@ -16,10 +16,14 @@ public class ScoreController {
     @Autowired
     private ScoreService scoreService;
 
+    @Autowired
+    private UserService userService;
+
     @RequestMapping("/scores")
     public String scores (Model model){
         List<UsersRecord> results = scoreService.showScores();
 
+        userService.addPoints();
         model.addAttribute("scores",results);
 
 

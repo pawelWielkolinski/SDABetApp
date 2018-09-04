@@ -27,15 +27,13 @@ public class MatchController {
     private HttpSession session;
     @Autowired
     private BetService betService;
-    @Autowired
-    private UserService userService;
+
 
     @RequestMapping("/")
     public String home(Model model) {
         model.addAttribute("matchDate", new MatchDate());
 
         betService.givePoints();
-        userService.addPoints();
 
         return "index";
     }
