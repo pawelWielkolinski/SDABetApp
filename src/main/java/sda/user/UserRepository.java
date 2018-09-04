@@ -5,13 +5,12 @@ import org.jooq.DSLContext;
 import org.springframework.stereotype.Repository;
 import sda.db.data.DatabaseAccess;
 import sda.db.data.generated.Tables;
-import sda.db.data.generated.tables.Bets;
 import sda.db.data.generated.tables.Users;
 import sda.db.data.generated.tables.records.UsersRecord;
 
 import java.sql.Connection;
 import java.sql.SQLException;
-import java.util.List;
+
 
 
 @Repository("userRepository")
@@ -71,17 +70,6 @@ public class UserRepository extends DatabaseAccess {
         } catch (SQLException e) {
             throw new RuntimeException(e);
 
-        }
-    }
-
-    public List<UsersRecord> getAll() {
-        try (Connection conn = connection()) {
-            DSLContext ctx = jooq(conn);
-            Users users = Tables.USERS;
-            return ctx.selectFrom(users)
-                    .fetch();
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
         }
     }
 }

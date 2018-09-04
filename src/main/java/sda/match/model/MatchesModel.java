@@ -13,10 +13,6 @@ import sda.match.model.Matches;
 import java.io.IOException;
 import java.sql.Date;
 import java.sql.Time;
-import java.time.Instant;
-import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.time.LocalTime;
 
 public class MatchesModel {
 
@@ -50,17 +46,12 @@ public class MatchesModel {
 
         for (Match match : matches.getMatches()) {
 
-            LocalDate utcDateOfMatch = Date.valueOf(match.getDate()).toLocalDate();
-            LocalTime utcTimeOfMatch = Time.valueOf(match.getTime()).toLocalTime();
-            LocalDateTime matchDateTime = LocalDateTime.of(utcDateOfMatch, utcTimeOfMatch).plusHours(2);
-
-
             if(matchRepository.getById(match.getId())!=null) {
                 matchesRecord = matchRepository.getById(match.getId());
                 matchesRecord.setHomeTeamGoals(match.getScore().getFullTime().getHomeTeam());
                 matchesRecord.setAwayTeamGoals(match.getScore().getFullTime().getAwayTeam());
-                matchesRecord.setStartDate(Date.valueOf(matchDateTime.toLocalDate()));
-                matchesRecord.setStartTime(Time.valueOf(matchDateTime.toLocalTime()));
+                matchesRecord.setStartDate(Date.valueOf(match.getDate()));
+                matchesRecord.setStartTime(Time.valueOf(match.getTime()));
                 matchRepository.insert(matchesRecord);
             }else {
                 matchesRecord.setIdMatch(match.getId());
@@ -68,8 +59,8 @@ public class MatchesModel {
                 matchesRecord.setAwayTeam(match.getAwayTeam().getName());
                 matchesRecord.setHomeTeamGoals(match.getScore().getFullTime().getHomeTeam());
                 matchesRecord.setAwayTeamGoals(match.getScore().getFullTime().getAwayTeam());
-                matchesRecord.setStartDate(Date.valueOf(matchDateTime.toLocalDate()));
-                matchesRecord.setStartTime(Time.valueOf(matchDateTime.toLocalTime()));
+                matchesRecord.setStartDate(Date.valueOf(match.getDate()));
+                matchesRecord.setStartTime(Time.valueOf(match.getTime()));
                 matchRepository.insert(matchesRecord);
             }
 

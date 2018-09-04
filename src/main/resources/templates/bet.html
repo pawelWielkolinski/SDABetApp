@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:th="http://www.thymeleaf.org"
-      xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout">
+      xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout"
+      layout:decorator="layout">>
 <head>
     <title>SDABetApp</title>
     <meta charset="UTF-8"/>
@@ -10,25 +11,25 @@
           integrity="sha384-O8whS3fhG2OnA5Kas0Y9l3cfpmYjapjI0E4theH4iuMD+pLhbf6JI0jIMfYcK3yZ" crossorigin="anonymous">
 </head>
 <body>
-
-<form action="#" th:action="@{/setBet}"
-    th:object="${betInfo}"
-    method="post">
-    <div class="row">
-        <div class="col">
-            <label for="HomeTeam"><p th:text="${betInfo.getHomeTeamName()}"/> score </label>
-            <input type="text" class="form-control" id="HomeTeam" th:field="*{homeTeamScore}" />
+<section layout:fragment="content">
+    <form action="#" th:action="@{/setBet}"
+          th:object="${betInfo}"
+          method="post">
+        <div class="row">
+            <div class="col">
+                <label for="HomeTeam"><p th:text="${betInfo.getHomeTeamName()}"/> score </label>
+                <input type="text" class="form-control" id="HomeTeam" th:field="*{homeTeamScore}"/>
+            </div>
+            <div class="col">
+                <label for="AwayTeam"><p th:text="${betInfo.getAwayTeamName()}"/> score </label>
+                <input type="text" class="form-control" id="AwayTeam" th:field="*{awayTeamScore}"/>
+            </div>
+            <input type="hidden" th:field="*{userId}"/>
+            <input type="hidden" th:field="*{matchId}"/>
         </div>
-        <div class="col">
-            <label for="AwayTeam"><p th:text="${betInfo.getAwayTeamName()}"/> score </label>
-            <input type="text" class="form-control" id="AwayTeam" th:field="*{awayTeamScore}" />
-        </div>
-        <input type="hidden" th:field="*{userId}" />
-        <input type="hidden" th:field="*{matchId}" />
-    </div>
-    <button type="submit" class="btn btn-success">Obstaw</button>
-</form>
-
+        <button type="submit" class="btn btn-success">Obstaw</button>
+    </form>
+</section>
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
         integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
         crossorigin="anonymous"></script>

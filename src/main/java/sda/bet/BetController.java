@@ -33,7 +33,6 @@ public class BetController {
         BetRepository betRepository = new BetRepository();
         MatchRepository matchRepository = new MatchRepository();
 
-        betService.givePoints();
         List<BetsRecord> yourBets = betRepository.getBetsByUserId((Integer) session.getAttribute("idUser"));
 
         model.addAttribute("yourBets", yourBets);

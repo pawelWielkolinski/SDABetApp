@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:th="http://www.thymeleaf.org">
+      xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout"
+      layout:decorator="layout">>
 <head>
     <title>Matches</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
@@ -8,90 +9,90 @@
           integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
 </head>
 <body>
-
-<div class="container">
-    <div class="row">
-        <div class="col-md">
-            HOME TEAM
-        </div>
-        <div class="col-md">
-            AWAY TEAM
-        </div>
-        <div class="col-sm">
-            HOME TEAM GOALS
-        </div>
-        <div class="col-sm">
-            AWAY TEAM GOALS
-        </div>
-        <div class="col-sm">
-            START DATE
-        </div>
-        <div class="col-sm">
-            START TIME
-        </div>
-        <div class="col-sm">
-            BUTTON
-        </div>
-    </div>
-    <th:block th:each="match :${matches}">
+<section layout:fragment="content">
+    <div class="container">
         <div class="row">
             <div class="col-md">
-                <p th:text="${match.getHomeTeam()}"/>
+                HOME TEAM
             </div>
             <div class="col-md">
-                <p th:text="${match.getAwayTeam()}"/>
+                AWAY TEAM
             </div>
             <div class="col-sm">
-                <div th:if="${match.getHomeTeamGoals() == null}">
-                    <p th:text="'-'"/>
-                </div>
-                <div th:unless="${match.getHomeTeamGoals() == null}">
-                    <p th:text="${match.getHomeTeamGoals()}"/>
-                </div>
+                HOME TEAM GOALS
             </div>
             <div class="col-sm">
-                <div th:if="${match.getAwayTeamGoals() == null}">
-                    <p th:text="'-'"/>
-                </div>
-                <div th:unless="${match.getAwayTeamGoals() == null}">
-                    <p th:text="${match.getAwayTeamGoals()}"/>
-                </div>
+                AWAY TEAM GOALS
             </div>
             <div class="col-sm">
-                <p th:text="${match.getStartDate()}"/>
+                START DATE
             </div>
             <div class="col-sm">
-                <p th:text="${match.getStartTime()}"/>
+                START TIME
             </div>
             <div class="col-sm">
-                <div th:if="${visible.get(match.getIdMatch())}">
-                    <div th:unless="${session.isLogin==null}">
-                        <form action="#" th:action="@{/toBet}"
-                              th:object="${matchToBet}"
-                              method="post">
-                            <input type="hidden" th:value="${match.getIdMatch()}" th:attr="name='idMatchToBet'"/>
-                            <div th:if="${betRepo.getBetByMatchIdAndUserId(match.getIdMatch(),#httpSession.getAttribute('idUser'))==null}">
-                                <button type="submit" class="btn btn-success">Obstaw ten mecz</button>
-                            </div>
-                            <div th:unless="${betRepo.getBetByMatchIdAndUserId(match.getIdMatch(),#httpSession.getAttribute('idUser'))==null}">
-                                <button type="submit" class="btn btn-success">Zaktualizuj typ</button>
-                            </div>
-                        </form>
-                    </div>
-                    <div th:if="${session.isLogin==null}">
-                        <a href="/login">Zaloguj się</a>
-                    </div>
-                </div>
+                BUTTON
             </div>
         </div>
-    </th:block>
-</div>
+        <th:block th:each="match :${matches}">
+            <div class="row">
+                <div class="col-md">
+                    <p th:text="${match.getHomeTeam()}"/>
+                </div>
+                <div class="col-md">
+                    <p th:text="${match.getAwayTeam()}"/>
+                </div>
+                <div class="col-sm">
+                    <div th:if="${match.getHomeTeamGoals() == null}">
+                        <p th:text="'-'"/>
+                    </div>
+                    <div th:unless="${match.getHomeTeamGoals() == null}">
+                        <p th:text="${match.getHomeTeamGoals()}"/>
+                    </div>
+                </div>
+                <div class="col-sm">
+                    <div th:if="${match.getAwayTeamGoals() == null}">
+                        <p th:text="'-'"/>
+                    </div>
+                    <div th:unless="${match.getAwayTeamGoals() == null}">
+                        <p th:text="${match.getAwayTeamGoals()}"/>
+                    </div>
+                </div>
+                <div class="col-sm">
+                    <p th:text="${match.getStartDate()}"/>
+                </div>
+                <div class="col-sm">
+                    <p th:text="${match.getStartTime()}"/>
+                </div>
+                <div class="col-sm">
+                    <div th:if="${visible.get(match.getIdMatch())}">
+                        <div th:unless="${session.isLogin==null}">
+                            <form action="#" th:action="@{/toBet}"
+                                  th:object="${matchToBet}"
+                                  method="post">
+                                <input type="hidden" th:value="${match.getIdMatch()}" th:attr="name='idMatchToBet'"/>
+                                <div th:if="${betRepo.getBetByMatchIdAndUserId(match.getIdMatch(),#httpSession.getAttribute('idUser'))==null}">
+                                    <button type="submit" class="btn btn-success">Obstaw ten mecz</button>
+                                </div>
+                                <div th:unless="${betRepo.getBetByMatchIdAndUserId(match.getIdMatch(),#httpSession.getAttribute('idUser'))==null}">
+                                    <button type="submit" class="btn btn-success">Zaktualizuj typ</button>
+                                </div>
+                            </form>
+                        </div>
+                        <div th:if="${session.isLogin==null}">
+                            <a href="/login">Zaloguj się</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </th:block>
+    </div>
 
-</p>
-<p>
-    <a href="/">Powrót do strony głównej</a>
-</p>
-
+    </p>
+    <p>
+        <a href="/">Powrót do strony głównej</a>
+    </p>
+</section>
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
         integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
         crossorigin="anonymous"></script>
