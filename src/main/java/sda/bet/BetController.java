@@ -25,7 +25,7 @@ public class BetController {
 
         betService.saveBet(betInfo);
 
-        return "bets";
+        return "redirect:bets";
     }
 
     @RequestMapping("/bets")
@@ -35,7 +35,6 @@ public class BetController {
 
         betService.givePoints();
         List<BetsRecord> yourBets = betRepository.getBetsByUserId((Integer) session.getAttribute("idUser"));
-
         model.addAttribute("yourBets", yourBets);
         model.addAttribute("matchRepo", matchRepository);
 
