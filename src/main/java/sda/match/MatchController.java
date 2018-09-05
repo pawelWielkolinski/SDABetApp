@@ -30,9 +30,22 @@ public class MatchController {
 
 
     @RequestMapping("/")
-    public String home(Model model) {
+    public String home(Model model) throws IOException {
         model.addAttribute("matchDate", new MatchDate());
         model.addAttribute("matchTeamName", new MatchTeamName());
+
+        List<MatchesRecord> matches = matchServices.showWithLimit();
+
+        model.addAttribute("matches", matches);
+
+        Map<Integer, Boolean> visibleButtons = matchServices.getVisibleMatches(matches);
+
+        model.addAttribute("visible", visibleButtons);
+        model.addAttribute("matchToBet", new MatchToBet());
+
+        BetRepository betRepository = new BetRepository();
+
+        model.addAttribute("betRepo", betRepository);
 
         betService.givePoints();
 
