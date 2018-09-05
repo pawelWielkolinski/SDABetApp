@@ -40,77 +40,75 @@
                     </ul>
                 </div>
             </nav>
-            <div class="container">
-                <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
-                    <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+            <div>
+                <main role="main" class="col-md-9 ml-sm-left col-lg-10 px-4">
+                    <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-left pt-3 pb-2 mb-3 border-bottom">
                         <h1 class="h2">Najbliższe mecze</h1>
                     </div>
                 </main>
 
-                <div class="container">
+                <table class="table table-striped">
+                    <thead class="thead-dark">
+                    <tr>
+                        <th scope="col">HOME TEAM</th>
+                        <th scope="col">AWAY TEAM</th>
+                        <th scope="col">H.T. GOALS</th>
+                        <th scope="col">A.T. GOALS</th>
+                        <th scope="col">START DATE</th>
+                        <th scope="col">START TIME</th>
+                        <th scope="col">BET</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr th:block th:each="match :${matches}">
+                        <td><p th:text="${match.getHomeTeam()}"/></td>
+                        <td><p th:text="${match.getAwayTeam()}"/></td>
+                        <td>
+                            <div th:if="${match.getHomeTeamGoals() == null}">
+                                <p th:text="'-'"/>
+                            </div>
+                            <div th:unless="${match.getHomeTeamGoals() == null}">
+                                <p th:text="${match.getHomeTeamGoals()}"/>
+                            </div>
+                        </td>
+                        <td>
+                            <div th:if="${match.getAwayTeamGoals() == null}">
+                                <p th:text="'-'"/>
+                            </div>
+                            <div th:unless="${match.getAwayTeamGoals() == null}">
+                                <p th:text="${match.getAwayTeamGoals()}"/>
+                            </div>
+                        </td>
+                        <td><p th:text="${match.getStartDate()}"/></td>
+                        <td><p th:text="${match.getStartTime()}"/></td>
+                        <td>
+                            <div th:if="${visible.get(match.getIdMatch())}">
+                                <div th:unless="${session.isLogin==null}">
+                                    <form action="#" th:action="@{/toBet}"
+                                          th:object="${matchToBet}"
+                                          method="post">
+                                        <input type="hidden" th:value="${match.getIdMatch()}"
+                                               th:attr="name='idMatchToBet'"/>
+                                        <div th:if="${betRepo.getBetByMatchIdAndUserId(match.getIdMatch(),#httpSession.getAttribute('idUser'))==null}">
+                                            <button type="submit" class="btn btn-success btn-lg btn-block">Obstaw
+                                            </button>
+                                        </div>
+                                        <div th:unless="${betRepo.getBetByMatchIdAndUserId(match.getIdMatch(),#httpSession.getAttribute('idUser'))==null}">
+                                            <button type="submit" class="btn btn-outline-success btn-lg btn-block">
+                                                Zaktualizuj typ
+                                            </button>
+                                        </div>
+                                    </form>
+                                </div>
+                                <div th:if="${session.isLogin==null}">
+                                    <a href="/login">Zaloguj się</a>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
 
-                    <table class="table table-striped">
-                        <thead class="thead-dark">
-                        <tr>
-                            <th scope="col">HOME TEAM</th>
-                            <th scope="col">AWAY TEAM</th>
-                            <th scope="col">H.T. GOALS</th>
-                            <th scope="col">A.T. GOALS</th>
-                            <th scope="col">START DATE</th>
-                            <th scope="col">START TIME</th>
-                            <th scope="col">BET</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        <tr th:block th:each="match :${matches}">
-                            <td><p th:text="${match.getHomeTeam()}"/></td>
-                            <td><p th:text="${match.getAwayTeam()}"/></td>
-                            <td>
-                                <div th:if="${match.getHomeTeamGoals() == null}">
-                                    <p th:text="'-'"/>
-                                </div>
-                                <div th:unless="${match.getHomeTeamGoals() == null}">
-                                    <p th:text="${match.getHomeTeamGoals()}"/>
-                                </div>
-                            </td>
-                            <td>
-                                <div th:if="${match.getAwayTeamGoals() == null}">
-                                    <p th:text="'-'"/>
-                                </div>
-                                <div th:unless="${match.getAwayTeamGoals() == null}">
-                                    <p th:text="${match.getAwayTeamGoals()}"/>
-                                </div>
-                            </td>
-                            <td><p th:text="${match.getStartDate()}"/></td>
-                            <td><p th:text="${match.getStartTime()}"/></td>
-                            <td>
-                                <div th:if="${visible.get(match.getIdMatch())}">
-                                    <div th:unless="${session.isLogin==null}">
-                                        <form action="#" th:action="@{/toBet}"
-                                              th:object="${matchToBet}"
-                                              method="post">
-                                            <input type="hidden" th:value="${match.getIdMatch()}"
-                                                   th:attr="name='idMatchToBet'"/>
-                                            <div th:if="${betRepo.getBetByMatchIdAndUserId(match.getIdMatch(),#httpSession.getAttribute('idUser'))==null}">
-                                                <button type="submit" class="btn btn-success btn-lg btn-block">Obstaw
-                                                </button>
-                                            </div>
-                                            <div th:unless="${betRepo.getBetByMatchIdAndUserId(match.getIdMatch(),#httpSession.getAttribute('idUser'))==null}">
-                                                <button type="submit" class="btn btn-outline-success btn-lg btn-block">
-                                                    Zaktualizuj typ
-                                                </button>
-                                            </div>
-                                        </form>
-                                    </div>
-                                    <div th:if="${session.isLogin==null}">
-                                        <a href="/login">Zaloguj się</a>
-                                    </div>
-                                </div>
-                            </td>
-                        </tr>
-                        </tbody>
-                    </table>
-                </div>
             </div>
 
 
