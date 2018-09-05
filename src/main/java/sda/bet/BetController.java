@@ -21,11 +21,11 @@ public class BetController {
     private HttpSession session;
 
     @PostMapping ("/setBet")
-    public String setBet(@ModelAttribute BetForm betInfo, Model model) {
+    public String setBet(@ModelAttribute BetForm betInfo) {
 
         betService.saveBet(betInfo);
 
-        return "betSuccessful";
+        return "bets";
     }
 
     @RequestMapping("/bets")
