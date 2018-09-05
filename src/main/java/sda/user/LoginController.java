@@ -50,6 +50,7 @@ public class LoginController {
             httpSession.setAttribute("email", loginU.getEmail());
             httpSession.setAttribute("points", loginU.getPoints());
             httpSession.setAttribute("isLogin", "true");
+            httpSession.setAttribute("userName", loginU.getUserName());
 
             model.addAttribute("matchDate", new MatchDate());
             return "index";

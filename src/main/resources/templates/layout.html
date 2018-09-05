@@ -51,7 +51,7 @@
             <div class="container">
                 <div class="row" th:if="${session.isLogin!=null}">
                     <div class="col-sm-8">Logged as:</div>
-                    <div class="col-sm-4" th:text="${#httpSession.getAttribute('userName')}"></div>
+                    <p class="col-sm-4" th:text="${#httpSession.getAttribute('userName')}"></p>
                 </div>
             </div>
         </div>
