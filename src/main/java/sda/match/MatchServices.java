@@ -7,8 +7,12 @@ import sda.match.model.Matches;
 import sda.match.model.MatchesModel;
 
 import java.io.IOException;
+import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Service
 public class MatchServices {
@@ -30,5 +34,18 @@ public class MatchServices {
         matches = matchRepository.getByTeamName(name);
 
         return matches;
+    }
+
+    public Map<Integer, Boolean> getVisibleMatches(List<MatchesRecord> matches) {
+        Map<Integer, Boolean> visibleButtons = new HashMap<>();
+        for (MatchesRecord match : matches) {
+
+            boolean visible = match.getStartDate().toLocalDate().isAfter(LocalDate.now())
+                    || (match.getStartDate().toLocalDate().compareTo(LocalDate.now()) == 0
+                    && match.getStartTime().toLocalTime().isAfter(LocalTime.now()));
+
+            visibleButtons.put(match.getIdMatch(), visible);
+        }
+        return visibleButtons;
     }
 }

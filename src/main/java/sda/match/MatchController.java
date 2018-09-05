@@ -47,15 +47,7 @@ public class MatchController {
 
         model.addAttribute("matches", matches);
 
-        Map<Integer, Boolean> visibleButtons = new HashMap<>();
-        for (MatchesRecord match : matches) {
-
-            boolean visible = match.getStartDate().toLocalDate().isAfter(LocalDate.now())
-                    || (match.getStartDate().toLocalDate().compareTo(LocalDate.now()) == 0
-                    && match.getStartTime().toLocalTime().isAfter(LocalTime.now()));
-
-            visibleButtons.put(match.getIdMatch(), visible);
-        }
+        Map<Integer, Boolean> visibleButtons = matchServices.getVisibleMatches(matches);
 
         model.addAttribute("visible", visibleButtons);
         model.addAttribute("matchToBet", new MatchToBet());
@@ -88,15 +80,7 @@ public class MatchController {
 
         model.addAttribute("matches", matches);
 
-        Map<Integer, Boolean> visibleButtons = new HashMap<>();
-        for (MatchesRecord match : matches) {
-
-            boolean visible = match.getStartDate().toLocalDate().isAfter(LocalDate.now())
-                    || (match.getStartDate().toLocalDate().compareTo(LocalDate.now()) == 0
-                    && match.getStartTime().toLocalTime().isAfter(LocalTime.now()));
-
-            visibleButtons.put(match.getIdMatch(), visible);
-        }
+        Map<Integer, Boolean> visibleButtons = matchServices.getVisibleMatches(matches);
 
         model.addAttribute("visible", visibleButtons);
         model.addAttribute("matchToBet", new MatchToBet());
