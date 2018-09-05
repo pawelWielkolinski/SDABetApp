@@ -32,6 +32,7 @@ public class MatchController {
     @RequestMapping("/")
     public String home(Model model) {
         model.addAttribute("matchDate", new MatchDate());
+        model.addAttribute("matchTeamName", new MatchTeamName());
 
         betService.givePoints();
 
@@ -77,6 +78,32 @@ public class MatchController {
         model.addAttribute("betInfo", betForm);
 
         return "bet";
+    }
+
+    @PostMapping("/teamName")
+    public String teamName(@ModelAttribute MatchTeamName matchTeamName, Model model) throws IOException{
+        List<MatchesRecord> matches = matchServices.showByName(matchTeamName.getTeamName());
+
+        model.addAttribute("matches", matches);
+
+        Map<Integer, Boolean> visibleButtons = new HashMap<>();
+        for (MatchesRecord match : matches) {
+
+            boolean visible = match.getStartDate().toLocalDate().isAfter(LocalDate.now())
+                    || (match.getStartDate().toLocalDate().compareTo(LocalDate.now()) == 0
+                    && match.getStartTime().toLocalTime().isAfter(LocalTime.now()));
+
+            visibleButtons.put(match.getIdMatch(), visible);
+        }
+
+        model.addAttribute("visible", visibleButtons);
+        model.addAttribute("matchToBet", new MatchToBet());
+
+        BetRepository betRepository = new BetRepository();
+
+        model.addAttribute("betRepo", betRepository);
+
+        return "matches";
     }
 
 }

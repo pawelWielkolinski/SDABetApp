@@ -22,4 +22,13 @@ public class MatchServices {
 
         return matches;
     }
+
+    public List<MatchesRecord> showByName(String name) throws IOException{
+        MatchRepository matchRepository = new MatchRepository();
+
+        List<MatchesRecord> matches = new ArrayList<>();
+        matches = matchRepository.getByTeamName(name);
+
+        return matches;
+    }
 }

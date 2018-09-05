@@ -11,13 +11,38 @@
 </head>
 <body>
 <section layout:fragment="content">
-    <div>
-        <h2>Wyświetl mecze Ligi Mistrzów UEFA :</h2>
-        <form action="#" th:action="@{/update}" th:object="${matchDate}" method="post">
-            <p>dateFrom: <input type="date" th:field="*{dateFrom}" /></p>
-            <p>dateTo: <input type="date" th:field="*{dateTo}" /></p>
-            <p><input type="submit" value="Submit" /> <input type="reset" value="Reset" /></p>
-        </form>
+    <div class="container-fluid">
+        <div class="row">
+            <nav class="col-md-2 d-none d-md-block bg-light sidebar">
+                <div class="sidebar-sticky">
+                    <ul class="nav flex-column">
+                        <li class="nav-item">
+                            <a class="nav-link active">
+                                <span data-feather="home"></span>
+                                Wyszukaj mecze: <span class="sr-only">(current)</span>
+                            </a>
+                            <form action="#" th:action="@{/update}" th:object="${matchDate}" method="post">
+                                <div class="row">
+                                    <div class="col">dateFrom: <input type="date" th:field="*{dateFrom}"/></div>
+                                    <div class="col">dateTo:<br> <input type="date" th:field="*{dateTo}"/></div>
+                                    <div class="col"><input type="submit" value="Submit"/> <input type="reset"
+                                                                                                  value="Reset"/></div>
+                                </div>
+                            </form>
+                            <form action="#" th:action="@{/teamName}" th:object="${matchTeamName}" method="post">
+                                <div class="row">
+                                    <div class="col">Team name: <input type="text" th:field="*{teamName}"/></div>
+                                    <div class="col"><input type="submit" value="Submit"/> <input type="reset"
+                                                                                                  value="Reset"/></div>
+                                </div>
+                            </form>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+
+
+        </div>
     </div>
 </section>
 

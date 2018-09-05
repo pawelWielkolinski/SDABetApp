@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import sda.db.data.generated.tables.records.UsersRecord;
 import sda.match.MatchDate;
+import sda.match.MatchTeamName;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -53,10 +54,17 @@ public class LoginController {
             httpSession.setAttribute("userName", loginU.getUserName());
 
             model.addAttribute("matchDate", new MatchDate());
+            model.addAttribute("matchTeamName", new MatchTeamName());
             return "index";
         }
         return "login";
 
     }
 
+    @RequestMapping("/logout")
+    public String logout() {
+        httpSession.invalidate();
+        return "/logout";
+
+    }
 }
