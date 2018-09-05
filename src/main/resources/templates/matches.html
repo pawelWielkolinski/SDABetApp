@@ -11,60 +11,42 @@
 <body>
 <section layout:fragment="content">
     <div class="container">
-        <div class="row">
-            <div class="col-md">
-                HOME TEAM
-            </div>
-            <div class="col-md">
-                AWAY TEAM
-            </div>
-            <div class="col-sm">
-                HOME TEAM GOALS
-            </div>
-            <div class="col-sm">
-                AWAY TEAM GOALS
-            </div>
-            <div class="col-sm">
-                START DATE
-            </div>
-            <div class="col-sm">
-                START TIME
-            </div>
-            <div class="col-sm">
-                BUTTON
-            </div>
-        </div>
-        <th:block th:each="match :${matches}">
-            <div class="row">
-                <div class="col-md">
-                    <p th:text="${match.getHomeTeam()}"/>
-                </div>
-                <div class="col-md">
-                    <p th:text="${match.getAwayTeam()}"/>
-                </div>
-                <div class="col-sm">
+
+        <table class="table table-striped">
+            <thead class="thead-dark">
+            <tr>
+                <th scope="col">HOME TEAM</th>
+                <th scope="col">AWAY TEAM</th>
+                <th scope="col">H.T. GOALS</th>
+                <th scope="col">A.T. GOALS</th>
+                <th scope="col">START DATE</th>
+                <th scope="col">START TIME</th>
+                <th scope="col">BET</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:block th:each="match :${matches}">
+                <td><p th:text="${match.getHomeTeam()}"/></td>
+                <td><p th:text="${match.getAwayTeam()}"/></td>
+                <td>
                     <div th:if="${match.getHomeTeamGoals() == null}">
                         <p th:text="'-'"/>
                     </div>
                     <div th:unless="${match.getHomeTeamGoals() == null}">
                         <p th:text="${match.getHomeTeamGoals()}"/>
                     </div>
-                </div>
-                <div class="col-sm">
+                </td>
+                <td>
                     <div th:if="${match.getAwayTeamGoals() == null}">
                         <p th:text="'-'"/>
                     </div>
                     <div th:unless="${match.getAwayTeamGoals() == null}">
                         <p th:text="${match.getAwayTeamGoals()}"/>
                     </div>
-                </div>
-                <div class="col-sm">
-                    <p th:text="${match.getStartDate()}"/>
-                </div>
-                <div class="col-sm">
-                    <p th:text="${match.getStartTime()}"/>
-                </div>
-                <div class="col-sm">
+                </td>
+                <td><p th:text="${match.getStartDate()}"/></td>
+                <td><p th:text="${match.getStartTime()}"/></td>
+                <td>
                     <div th:if="${visible.get(match.getIdMatch())}">
                         <div th:unless="${session.isLogin==null}">
                             <form action="#" th:action="@{/toBet}"
@@ -72,10 +54,10 @@
                                   method="post">
                                 <input type="hidden" th:value="${match.getIdMatch()}" th:attr="name='idMatchToBet'"/>
                                 <div th:if="${betRepo.getBetByMatchIdAndUserId(match.getIdMatch(),#httpSession.getAttribute('idUser'))==null}">
-                                    <button type="submit" class="btn btn-success">Obstaw ten mecz</button>
+                                    <button type="submit" class="btn btn-success btn-lg btn-block">Obstaw</button>
                                 </div>
                                 <div th:unless="${betRepo.getBetByMatchIdAndUserId(match.getIdMatch(),#httpSession.getAttribute('idUser'))==null}">
-                                    <button type="submit" class="btn btn-success">Zaktualizuj typ</button>
+                                    <button type="submit" class="btn btn-outline-success btn-lg btn-block">Zaktualizuj typ</button>
                                 </div>
                             </form>
                         </div>
@@ -83,15 +65,11 @@
                             <a href="/login">Zaloguj się</a>
                         </div>
                     </div>
-                </div>
-            </div>
-        </th:block>
+                </td>
+            </tr>
+            </tbody>
+        </table>
     </div>
-
-    </p>
-    <p>
-        <a href="/">Powrót do strony głównej</a>
-    </p>
 </section>
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
         integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
