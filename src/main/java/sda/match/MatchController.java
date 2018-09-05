@@ -30,9 +30,11 @@ public class MatchController {
 
 
     @RequestMapping("/")
-    public String home(Model model) {
+    public String home(Model model) throws IOException {
         model.addAttribute("matchDate", new MatchDate());
         model.addAttribute("matchTeamName", new MatchTeamName());
+
+        List<MatchesRecord> matches = matchServices.show(LocalDate.now().toString(),LocalDate.now().plusDays(20).toString());
 
         betService.givePoints();
 
