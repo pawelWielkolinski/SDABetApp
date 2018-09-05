@@ -38,6 +38,7 @@ public class BetRepository extends DatabaseAccess {
             Bets bets = Tables.BETS;
             return new ArrayList<>(ctx.selectFrom(bets)
                     .where(bets.ID_USER.equal(userId))
+                    .orderBy(bets.CREATE_DATE.desc().nullsLast())
                     .fetch());
         } catch (SQLException e) {
             throw new RuntimeException(e);

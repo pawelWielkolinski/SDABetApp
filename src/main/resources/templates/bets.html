@@ -11,32 +11,38 @@
 </head>
 <body>
 <section layout:fragment="content">
-    <table class="table table-dark">
-        <thead>
-        <tr>
-            <th scope="col">BET ID</th>
-            <th scope="col">MATCH</th>
-            <th scope="col">BET SCORE</th>
-            <th scope="col">SCORE</th>
-            <th scope="col">POINTS</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr th:each="bets :${yourBets}">
-            <th scope="row"><p th:text="${bets.getIdBet()}"/></th>
-            <td><p th:text="${matchRepo.getById(bets.getIdMatch()).getHomeTeam()}"/>vs
-                <p th:text="${matchRepo.getById(bets.getIdMatch()).getAwayTeam()}"/></td>
-            <td><p th:text="${bets.getHomeTeamBet()}"/>-<p th:text="${bets.getAwayTeamBet()}"/></td>
-            <td><p th:text="${matchRepo.getById(bets.getIdMatch()).getHomeTeamGoals()}"/>-
-                <p th:text="${matchRepo.getById(bets.getIdMatch()).getAwayTeamGoals()}"/></td>
-            <td><p th:text="${bets.getPoints()}"/></td>
-        </tr>
-        </tbody>
-    </table>
+    <div class="container">
+        <table class="table table-striped">
+            <thead class="thead-dark">
+            <tr>
+                <th scope="col">BET DATE</th>
+                <th scope="col">HOME TEAM</th>
+                <th scope="col">AWAY TEAM</th>
+                <th scope="col">HT SCORE</th>
+                <th scope="col">AT SCORE</th>
+                <th scope="col">HT BET</th>
+                <th scope="col">AT BET</th>
+                <th scope="col">POINTS</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="bets :${yourBets}">
+                <td><p th:text="${bets.getCreateDate()}"/></td>
+                <td><p th:text="${matchRepo.getById(bets.getIdMatch()).getHomeTeam()}"/></td>
+                <td><p th:text="${matchRepo.getById(bets.getIdMatch()).getAwayTeam()}"/></td>
+                <td><p th:text="${matchRepo.getById(bets.getIdMatch()).getHomeTeamGoals()}"/></td>
+                <td><p th:text="${matchRepo.getById(bets.getIdMatch()).getAwayTeamGoals()}"/></td>
+                <td><p th:text="${bets.getHomeTeamBet()}"/></td>
+                <td><p th:text="${bets.getAwayTeamBet()}"/></td>
 
-    <p>
-        <a href="/">Powrót do strony głównej</a>
-    </p>
+                <td>
+                    <!--<div th:if="${visible.get(match.getIdMatch())}">-->
+                    <p th:text="${bets.getPoints()}"/>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
 </section>
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
         integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
