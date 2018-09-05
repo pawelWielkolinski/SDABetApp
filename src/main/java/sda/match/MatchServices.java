@@ -27,6 +27,17 @@ public class MatchServices {
         return matches;
     }
 
+    public List<MatchesRecord> showWithLimit() throws IOException {
+        MatchRepository matchRepository = new MatchRepository();
+//        MatchesModel matchesModel = new MatchesModel();
+//        matchesModel.insertMatchesToDatabase(matchesModel.getMatchesFromApi(dateFrom,dateTo));
+
+        List<MatchesRecord> matches = new ArrayList<>();
+        matches = matchRepository.getByDateLimit5();
+
+        return matches;
+    }
+
     public List<MatchesRecord> showByName(String name) throws IOException{
         MatchRepository matchRepository = new MatchRepository();
 
