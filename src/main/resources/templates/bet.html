@@ -9,7 +9,11 @@
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/css/bootstrap.min.css" rel="stylesheet"/>
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.1/css/all.css"
           integrity="sha384-O8whS3fhG2OnA5Kas0Y9l3cfpmYjapjI0E4theH4iuMD+pLhbf6JI0jIMfYcK3yZ" crossorigin="anonymous">
+    <style>
+        input.error { background-color: pink }
+    </style>
 </head>
+
 <body>
 <section layout:fragment="content">
 
@@ -29,10 +33,10 @@
                 <tbody>
                 <tr>
                     <td><input type="text" class="form-control" placeholder="Enter home team score" id="HomeTeam"
-                               th:field="*{homeTeamScore}"/></td>
+                               th:field="*{homeTeamScore}" th:errorClass="error"/></td>
                     <td align="center">:</td>
                     <td><input type="text" class="form-control" placeholder="Enter away team score" id="AwayTeam"
-                               th:field="*{awayTeamScore}"/></td>
+                               th:field="*{awayTeamScore}" th:errorClass="error"/></td>
                 </tr>
                 <tr>
                     <td colspan="3">
