@@ -55,7 +55,7 @@ public class LoginController {
 
             model.addAttribute("matchDate", new MatchDate());
             model.addAttribute("matchTeamName", new MatchTeamName());
-            return "index";
+            return "redirect:/";
         }
         return "login";
 
