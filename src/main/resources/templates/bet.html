@@ -9,11 +9,7 @@
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/css/bootstrap.min.css" rel="stylesheet"/>
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.1/css/all.css"
           integrity="sha384-O8whS3fhG2OnA5Kas0Y9l3cfpmYjapjI0E4theH4iuMD+pLhbf6JI0jIMfYcK3yZ" crossorigin="anonymous">
-    <style>
-        input.error { background-color: pink }
-    </style>
 </head>
-
 <body>
 <section layout:fragment="content">
 
@@ -23,24 +19,24 @@
             <form action="#" th:action="@{/setBet}"
                   th:object="${betInfo}"
                   method="post">
-                <thead>
+                <thead class="thead-dark">
                 <tr>
-                    <td scope="col" align="center"><p th:text="${betInfo.getHomeTeamName()}"/></td>
-                    <td align="center">vs</td>
-                    <td scope="col" align="center"><p th:text="${betInfo.getAwayTeamName()}"/></td>
+                    <th scope="col" style="text-align: center"><p th:text="${betInfo.getHomeTeamName()}"/></th>
+                    <th></th>
+                    <th scope="col" style="text-align: center"><p th:text="${betInfo.getAwayTeamName()}"/></th>
                 </tr>
                 </thead>
                 <tbody>
                 <tr>
-                    <td><input type="text" class="form-control" placeholder="Enter home team score" id="HomeTeam"
-                               th:field="*{homeTeamScore}" th:errorClass="error"/></td>
+                    <td><input type="text" class="form-control" placeholder="Bet home team score" id="HomeTeam"
+                               th:field="*{homeTeamScore}"/></td>
                     <td align="center">:</td>
-                    <td><input type="text" class="form-control" placeholder="Enter away team score" id="AwayTeam"
-                               th:field="*{awayTeamScore}" th:errorClass="error"/></td>
+                    <td><input type="text" class="form-control" placeholder="Bet away team score" id="AwayTeam"
+                               th:field="*{awayTeamScore}"/></td>
                 </tr>
                 <tr>
                     <td colspan="3">
-                        <button type="submit" class="btn btn-success">Obstaw</button>
+                        <button type="submit" class="btn btn-outline-success btn-lg btn-block">Obstaw</button>
                     </td>
                 </tr>
                 </tbody>
