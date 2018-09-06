@@ -3,6 +3,7 @@ package sda.match;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import sda.bet.BetForm;
 import sda.bet.BetRepository;
@@ -72,6 +73,8 @@ public class MatchController {
 
     @PostMapping("/toBet")
     public String toBet(@ModelAttribute MatchToBet matchToBet, Model model) {
+
+
         BetForm betForm = new BetForm();
         MatchRepository matchRepository = new MatchRepository();
 

@@ -23,17 +23,46 @@
                             </a>
                             <form action="#" th:action="@{/update}" th:object="${matchDate}" method="post">
                                 <div class="row">
-                                    <div class="col">dateFrom: <input type="date" th:field="*{dateFrom}"/></div>
-                                    <div class="col">dateTo:<br> <input type="date" th:field="*{dateTo}"/></div>
-                                    <div class="col"><input type="submit" value="Submit"/> <input type="reset"
-                                                                                                  value="Reset"/></div>
+                                    <div class="input-group input-group-sm mb-3">
+                                        <div class="col">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text"
+                                                      id="inputGroup-sizing-sm">Date from:</span>
+                                            </div>
+
+                                            <input type="date" class="form-control" aria-label="Small"
+                                                   aria-describedby="inputGroup-sizing-sm"
+                                                   th:field="*{dateFrom}"/>
+                                            <div class="input-group-prepend">
+                                            <span class="input-group-text"
+                                                  id="inputGroup-sizing-sm">Date to:</span>
+                                            </div>
+                                            <input type="date" class="form-control" aria-label="Small"
+                                                   aria-describedby="inputGroup-sizing-sm"
+                                                   th:field="*{dateTo}"/>
+                                        </div>
+                                        <div class="col"><input type="submit" value="Submit"/> <input type="reset"
+                                                                                                      value="Reset"/>
+                                        </div>
+                                    </div>
                                 </div>
                             </form>
                             <form action="#" th:action="@{/teamName}" th:object="${matchTeamName}" method="post">
                                 <div class="row">
-                                    <div class="col">Team name: <input type="text" th:field="*{teamName}"/></div>
-                                    <div class="col"><input type="submit" value="Submit"/> <input type="reset"
-                                                                                                  value="Reset"/></div>
+                                    <div class="input-group input-group-sm mb-3">
+                                        <div class="col">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text"
+                                                      id="inputGroup-sizing-sm">Team name:</span>
+                                            </div>
+                                            <input type="text" class="form-control" aria-label="Small"
+                                                   aria-describedby="inputGroup-sizing-sm" th:field="*{teamName}"/>
+                                        </div>
+                                        <div class="col"><input type="submit" value="Submit"/> <input type="reset"
+                                                                                                      value="Reset"/>
+                                        </div>
+
+                                    </div>
                                 </div>
                             </form>
                         </li>

@@ -3,6 +3,7 @@ package sda.bet;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -21,7 +22,10 @@ public class BetController {
     private HttpSession session;
 
     @PostMapping ("/setBet")
-    public String setBet(@ModelAttribute BetForm betInfo) {
+    public String setBet(@ModelAttribute BetForm betInfo, BindingResult binding) {
+        if(binding.hasErrors()){
+            return "redirect:bets";
+        }
 
         betService.saveBet(betInfo);
 
