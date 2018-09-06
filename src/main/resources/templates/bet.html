@@ -11,26 +11,28 @@
           integrity="sha384-O8whS3fhG2OnA5Kas0Y9l3cfpmYjapjI0E4theH4iuMD+pLhbf6JI0jIMfYcK3yZ" crossorigin="anonymous">
 </head>
 <body>
-<form layout:fragment="content">
+<section layout:fragment="content">
 
     <div class="container">
 
-        <form action="#" th:action="@{/setBet}"
-              th:object="${betInfo}"
-              method="post">
-            <table class="table">
-                <thead class="thead-dark">
+        <table class="table">
+            <form action="#" th:action="@{/setBet}"
+                  th:object="${betInfo}"
+                  method="post">
+                <thead>
                 <tr>
-                    <th scope="col" valign="middle"><p th:text="${betInfo.getHomeTeamName()}"/></th>
-                    <th valign="middle">vs</th>
-                    <th scope="col" valign="middle"><p th:text="${betInfo.getAwayTeamName()}"/></th>
+                    <td scope="col" align="center"><p th:text="${betInfo.getHomeTeamName()}"/></td>
+                    <td align="center">vs</td>
+                    <td scope="col" align="center"><p th:text="${betInfo.getAwayTeamName()}"/></td>
                 </tr>
                 </thead>
                 <tbody>
                 <tr>
-                    <td><input type="text" class="form-control" placeholder="Enter home team score" id="HomeTeam" th:field="*{homeTeamScore}"/></td>
+                    <td><input type="text" class="form-control" placeholder="Enter home team score" id="HomeTeam"
+                               th:field="*{homeTeamScore}"/></td>
                     <td align="center">:</td>
-                    <td><input type="text" class="form-control" placeholder="Enter away team score" id="AwayTeam" th:field="*{awayTeamScore}"/></td>
+                    <td><input type="text" class="form-control" placeholder="Enter away team score" id="AwayTeam"
+                               th:field="*{awayTeamScore}"/></td>
                 </tr>
                 <tr>
                     <td colspan="3">
@@ -38,23 +40,21 @@
                     </td>
                 </tr>
                 </tbody>
-            </table>
-            <input type="hidden" th:field="*{userId}"/>
-            <input type="hidden" th:field="*{matchId}"/>
-        </form>
+                <input type="hidden" th:field="*{userId}"/>
+                <input type="hidden" th:field="*{matchId}"/>
+            </form>
+        </table>
     </div>
 
-</form>
-
 </section>
-<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
-        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
-        crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
-        integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
-        crossorigin="anonymous"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"
-        integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
-        crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+            integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+            crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
+            integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+            crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"
+            integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
+            crossorigin="anonymous"></script>
 </body>
 </html>
