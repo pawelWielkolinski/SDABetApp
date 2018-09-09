@@ -36,8 +36,12 @@
                 <td><p th:text="${bets.getAwayTeamBet()}"/></td>
 
                 <td>
-                    <!--<div th:if="${visible.get(match.getIdMatch())}">-->
-                    <p th:text="${bets.getPoints()}"/>
+                    <div th:if="${matchServ.isVisible(matchRepo.getById(bets.getIdMatch()))}">
+                        <p>-</p>
+                    </div>
+                    <div th:unless="${matchServ.isVisible(matchRepo.getById(bets.getIdMatch()))}">
+                        <p th:text="${bets.getPoints()}"/>
+                    </div>
                 </td>
             </tr>
             </tbody>

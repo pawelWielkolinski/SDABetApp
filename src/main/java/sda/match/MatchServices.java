@@ -51,12 +51,16 @@ public class MatchServices {
         Map<Integer, Boolean> visibleButtons = new HashMap<>();
         for (MatchesRecord match : matches) {
 
-            boolean visible = match.getStartDate().toLocalDate().isAfter(LocalDate.now())
-                    || (match.getStartDate().toLocalDate().compareTo(LocalDate.now()) == 0
-                    && match.getStartTime().toLocalTime().isAfter(LocalTime.now()));
+            boolean visible = isVisible(match);
 
             visibleButtons.put(match.getIdMatch(), visible);
         }
         return visibleButtons;
+    }
+
+    public boolean isVisible(MatchesRecord match) {
+        return match.getStartDate().toLocalDate().isAfter(LocalDate.now())
+                        || (match.getStartDate().toLocalDate().compareTo(LocalDate.now()) == 0
+                        && match.getStartTime().toLocalTime().isAfter(LocalTime.now()));
     }
 }
