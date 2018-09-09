@@ -1,6 +1,7 @@
 package sda.bet;
 
 import org.jooq.DSLContext;
+import org.springframework.stereotype.Repository;
 import sda.db.data.DatabaseAccess;
 import sda.db.data.generated.Tables;
 import sda.db.data.generated.tables.Bets;
@@ -12,6 +13,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
+@Repository
 public class BetRepository extends DatabaseAccess {
 
     public Integer insert(BetsRecord record) {
