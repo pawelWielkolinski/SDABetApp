@@ -54,17 +54,15 @@
                                   method="post">
                                 <input type="hidden" th:value="${match.getIdMatch()}" th:attr="name='idMatchToBet'"/>
                                 <div th:if="${betRepo.getBetByMatchIdAndUserId(match.getIdMatch(),#httpSession.getAttribute('idUser'))==null}">
-                                    <button type="submit" class="btn btn-success btn-lg btn-block">Obstaw</button>
+                                    <button type="submit" class="btn btn-success btn-lg btn-block">Place bet</button>
                                 </div>
                                 <div th:unless="${betRepo.getBetByMatchIdAndUserId(match.getIdMatch(),#httpSession.getAttribute('idUser'))==null}">
-                                    <button type="submit" class="btn btn-outline-success btn-lg btn-block">Zaktualizuj
-                                        typ
-                                    </button>
+                                    <button type="submit" class="btn btn-outline-success btn-lg btn-block">Change bet</button>
                                 </div>
                             </form>
                         </div>
                         <div th:if="${session.isLogin==null}">
-                            <a href="/login">Zaloguj się</a>
+                            <a href="/login">Login</a>
                         </div>
                     </div>
                     <div th:unless="${visible.get(match.getIdMatch())}">

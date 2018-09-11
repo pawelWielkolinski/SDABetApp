@@ -19,7 +19,7 @@
                         <li class="nav-item">
                             <a class="nav-link active">
                                 <span data-feather="home"></span>
-                                Wyszukaj mecze: <span class="sr-only">(current)</span>
+                                Search matches: <span class="sr-only">(current)</span>
                             </a>
                             <div class="container">
                                 <form action="#" th:action="@{/update}" th:object="${matchDate}" method="post">
@@ -78,7 +78,7 @@
             <div>
                 <main role="main" class="col-md-9 ml-sm-left col-lg-10 px-4">
                     <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-left pt-3 pb-2 mb-3 border-bottom">
-                        <h1 class="h2">Najbliższe mecze</h1>
+                        <h1 class="h2">Next matches</h1>
                     </div>
                 </main>
 
@@ -125,18 +125,18 @@
                                         <input type="hidden" th:value="${match.getIdMatch()}"
                                                th:attr="name='idMatchToBet'"/>
                                         <div th:if="${betRepo.getBetByMatchIdAndUserId(match.getIdMatch(),#httpSession.getAttribute('idUser'))==null}">
-                                            <button type="submit" class="btn btn-success btn-lg btn-block">Obstaw
+                                            <button type="submit" class="btn btn-success btn-lg btn-block">Place bet
                                             </button>
                                         </div>
                                         <div th:unless="${betRepo.getBetByMatchIdAndUserId(match.getIdMatch(),#httpSession.getAttribute('idUser'))==null}">
                                             <button type="submit" class="btn btn-outline-success btn-lg btn-block">
-                                                Zaktualizuj typ
+                                                Change bet
                                             </button>
                                         </div>
                                     </form>
                                 </div>
                                 <div th:if="${session.isLogin==null}">
-                                    <a href="/login">Zaloguj się</a>
+                                    <a href="/login">Login</a>
                                 </div>
                             </div>
                         </td>
