@@ -49,6 +49,18 @@ public class UserRepository extends DatabaseAccess {
         }
     }
 
+    public UsersRecord getUserById(Integer id) {
+        try (Connection conn = connection()) {
+            DSLContext ctx = jooq(conn);
+            Users users = Tables.USERS;
+            return ctx.selectFrom(users)
+                    .where(users.ID_USER.equal(id))
+                    .fetchOne();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
     public UsersRecord getUserByEmail(String email) {
         try (Connection conn = connection()) {
             DSLContext ctx = jooq(conn);

@@ -15,33 +15,27 @@
         <table class="table table-striped">
             <thead class="thead-dark">
             <tr>
-                <th scope="col">BET DATE</th>
-                <th scope="col">HOME TEAM</th>
-                <th scope="col">AWAY TEAM</th>
-                <th scope="col">HT SCORE</th>
-                <th scope="col">AT SCORE</th>
-                <th scope="col">HT BET</th>
-                <th scope="col">AT BET</th>
+                <th colspan="2" style="text-align: center"><p th:text="${matchRepo.getById(matchId).getHomeTeam()}"/></th>
+                <th colspan="2" style="text-align: center"><p th:text="${matchRepo.getById(matchId).getAwayTeam()}"/></th>
+            </tr>
+            <tr>
+                <th colspan="2" style="text-align: center"><p th:text="${matchRepo.getById(matchId).getHomeTeamGoals()}"/></th>
+                <th colspan="2" style="text-align: center"><p th:text="${matchRepo.getById(matchId).getAwayTeamGoals()}"/></th>
+            </tr>
+            <tr>
+                <th scope="col">USER</th>
+                <th scope="col">HOME TEAM BET</th>
+                <th scope="col">AWAY TEAM BET</th>
                 <th scope="col">POINTS</th>
             </tr>
             </thead>
             <tbody>
             <tr th:each="bets :${yourBets}">
-                <td><p th:text="${bets.getCreateDate()}"/></td>
-                <td><p th:text="${matchRepo.getById(bets.getIdMatch()).getHomeTeam()}"/></td>
-                <td><p th:text="${matchRepo.getById(bets.getIdMatch()).getAwayTeam()}"/></td>
-                <td><p th:text="${matchRepo.getById(bets.getIdMatch()).getHomeTeamGoals()}"/></td>
-                <td><p th:text="${matchRepo.getById(bets.getIdMatch()).getAwayTeamGoals()}"/></td>
+                <td><p th:text="${userRepo.getUserById(bets.getIdUser()).getUserName()}"/></td>
                 <td><p th:text="${bets.getHomeTeamBet()}"/></td>
                 <td><p th:text="${bets.getAwayTeamBet()}"/></td>
-
                 <td>
-                    <div th:if="${matchServ.isVisible(matchRepo.getById(bets.getIdMatch()))}">
-                        <p>-</p>
-                    </div>
-                    <div th:unless="${matchServ.isVisible(matchRepo.getById(bets.getIdMatch()))}">
                         <p th:text="${bets.getPoints()}"/>
-                    </div>
                 </td>
             </tr>
             </tbody>

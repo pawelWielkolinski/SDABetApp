@@ -8,10 +8,17 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import sda.db.data.generated.tables.records.BetsRecord;
+import sda.db.data.generated.tables.records.MatchesRecord;
 import sda.match.MatchRepository;
+import sda.match.MatchServices;
+import sda.match.MatchToBet;
+import sda.user.UserRepository;
 
 import javax.servlet.http.HttpSession;
+import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.List;
+import java.util.Map;
 
 @Controller
 public class BetController {
@@ -20,6 +27,14 @@ public class BetController {
     private BetService betService;
     @Autowired
     private HttpSession session;
+    @Autowired
+    private  MatchServices matchServices;
+    @Autowired
+    private BetRepository betRepository;
+    @Autowired
+    private MatchRepository matchRepository;
+    @Autowired
+    private UserRepository userRepository;
 
     @PostMapping ("/setBet")
     public String setBet(@ModelAttribute BetForm betInfo, BindingResult binding) {
@@ -32,18 +47,30 @@ public class BetController {
         return "redirect:bets";
     }
 
+
     @RequestMapping("/bets")
     public String bets(Model model) {
-        BetRepository betRepository = new BetRepository();
-        MatchRepository matchRepository = new MatchRepository();
 
         betService.givePoints();
         List<BetsRecord> yourBets = betRepository.getBetsByUserId((Integer) session.getAttribute("idUser"));
         model.addAttribute("yourBets", yourBets);
         model.addAttribute("matchRepo", matchRepository);
+        model.addAttribute("matchServ", matchServices);
 
         return "bets";
     }
 
+    @PostMapping("/betsByUsers")
+    public  String betsByUsers(MatchToBet matchToBet, Model model){
+
+        List<BetsRecord> yourBets = betRepository.getBetsByMatchId(matchToBet.getIdMatchToBet());
+        model.addAttribute("yourBets", yourBets);
+        model.addAttribute("matchRepo", matchRepository);
+        model.addAttribute("userRepo", userRepository);
+        model.addAttribute("matchServ", matchServices);
+        model.addAttribute("matchId", matchToBet.getIdMatchToBet());
+
+        return "usersBets";
+    }
 
 }
