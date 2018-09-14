@@ -47,6 +47,11 @@
                         <a class="nav-link" href="/scores">Scoreboard <span class="sr-only">(current)</span></a>
                     </li>
                 </ul>
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item active" th:if="${session.isLogin!=null && #httpSession.getAttribute('role')=='ADMIN'}">
+                        <a class="nav-link" href="/adminpanel">Admin Panel <span class="sr-only">(current)</span></a>
+                    </li>
+                </ul>
             </ul>
             <div class="float-right">
                 <div class="container">
