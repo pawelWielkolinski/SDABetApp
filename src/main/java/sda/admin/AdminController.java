@@ -13,8 +13,10 @@ import sda.match.model.MatchesModel;
 import sda.user.UserRepository;
 import sda.user.UserService;
 
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Controller
 public class AdminController {
@@ -24,17 +26,22 @@ public class AdminController {
 
     @Autowired
     UserRepository userRepository;
+    @Autowired
+    HttpSession session;
 
     @GetMapping("/panel")
     public String admin(Model model) {
         List<UsersRecord> users = userRepository.getAll();
-        model.addAttribute("UsersList", users);
+        List<UsersRecord> panelUsers = users.stream()
+                .filter(usersRecord -> !usersRecord.getRole().equals("ADMIN"))
+                .collect(Collectors.toList());
+        model.addAttribute("UsersList", panelUsers);
         model.addAttribute("MatchDate", new MatchDate());
         return "panel";
     }
 
     @PostMapping("/updateMatchDatabase")
-    public String updateMatches(@ModelAttribute MatchDate matchDate, Model model) throws IOException {
+    public String updateMatches(@ModelAttribute MatchDate matchDate) throws IOException {
 
         MatchesModel matchesModel = new MatchesModel();
         Matches matchesFromApi = matchesModel.getMatchesFromApi(matchDate.getDateFrom(), matchDate.getDateTo());
@@ -43,8 +50,8 @@ public class AdminController {
         return "redirect:panel";
     }
 
-    @PostMapping("/manageUser")
-    public String manage(Model model) {
+    @PostMapping("/deleteUser")
+    public String deleteUser(Model model) {
 
 
         return "redirect:panel";
