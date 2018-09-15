@@ -33,7 +33,7 @@ public class AdminController {
     public String admin(Model model) {
         List<UsersRecord> users = userRepository.getAll();
         List<UsersRecord> panelUsers = users.stream()
-                .filter(usersRecord -> !usersRecord.getRole().equals("ADMIN"))
+                .filter(usersRecord -> !usersRecord.getUserRole().equals("ADMIN"))
                 .collect(Collectors.toList());
         model.addAttribute("UsersList", panelUsers);
         model.addAttribute("MatchDate", new MatchDate());

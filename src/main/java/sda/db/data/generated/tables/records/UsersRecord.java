@@ -28,7 +28,7 @@ import sda.db.data.generated.tables.Users;
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class UsersRecord extends UpdatableRecordImpl<UsersRecord> implements Record6<Integer, String, String, Integer, String, String> {
 
-    private static final long serialVersionUID = 506592936;
+    private static final long serialVersionUID = -1273104807;
 
     /**
      * Setter for <code>users.id_user</code>.
@@ -101,16 +101,16 @@ public class UsersRecord extends UpdatableRecordImpl<UsersRecord> implements Rec
     }
 
     /**
-     * Setter for <code>users.role</code>.
+     * Setter for <code>users.user_role</code>.
      */
-    public void setRole(String value) {
+    public void setUserRole(String value) {
         set(5, value);
     }
 
     /**
-     * Getter for <code>users.role</code>.
+     * Getter for <code>users.user_role</code>.
      */
-    public String getRole() {
+    public String getUserRole() {
         return (String) get(5);
     }
 
@@ -191,7 +191,7 @@ public class UsersRecord extends UpdatableRecordImpl<UsersRecord> implements Rec
      */
     @Override
     public Field<String> field6() {
-        return Users.USERS.ROLE;
+        return Users.USERS.USER_ROLE;
     }
 
     /**
@@ -239,7 +239,7 @@ public class UsersRecord extends UpdatableRecordImpl<UsersRecord> implements Rec
      */
     @Override
     public String component6() {
-        return getRole();
+        return getUserRole();
     }
 
     /**
@@ -287,7 +287,7 @@ public class UsersRecord extends UpdatableRecordImpl<UsersRecord> implements Rec
      */
     @Override
     public String value6() {
-        return getRole();
+        return getUserRole();
     }
 
     /**
@@ -340,7 +340,7 @@ public class UsersRecord extends UpdatableRecordImpl<UsersRecord> implements Rec
      */
     @Override
     public UsersRecord value6(String value) {
-        setRole(value);
+        setUserRole(value);
         return this;
     }
 
@@ -372,7 +372,7 @@ public class UsersRecord extends UpdatableRecordImpl<UsersRecord> implements Rec
     /**
      * Create a detached, initialised UsersRecord
      */
-    public UsersRecord(Integer idUser, String userName, String password, Integer points, String email, String role) {
+    public UsersRecord(Integer idUser, String userName, String password, Integer points, String email, String userRole) {
         super(Users.USERS);
 
         set(0, idUser);
@@ -380,6 +380,6 @@ public class UsersRecord extends UpdatableRecordImpl<UsersRecord> implements Rec
         set(2, password);
         set(3, points);
         set(4, email);
-        set(5, role);
+        set(5, userRole);
     }
 }

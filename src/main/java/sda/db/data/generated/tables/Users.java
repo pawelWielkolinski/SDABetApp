@@ -38,7 +38,7 @@ import sda.db.data.generated.tables.records.UsersRecord;
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class Users extends TableImpl<UsersRecord> {
 
-    private static final long serialVersionUID = 293181246;
+    private static final long serialVersionUID = 794033156;
 
     /**
      * The reference instance of <code>users</code>
@@ -79,9 +79,9 @@ public class Users extends TableImpl<UsersRecord> {
     public final TableField<UsersRecord, String> EMAIL = createField("email", org.jooq.impl.SQLDataType.VARCHAR.nullable(false), this, "");
 
     /**
-     * The column <code>users.role</code>.
+     * The column <code>users.user_role</code>.
      */
-    public final TableField<UsersRecord, String> ROLE = createField("role", org.jooq.impl.SQLDataType.VARCHAR.nullable(false).defaultValue(org.jooq.impl.DSL.field("USER", org.jooq.impl.SQLDataType.VARCHAR)), this, "");
+    public final TableField<UsersRecord, String> USER_ROLE = createField("user_role", org.jooq.impl.SQLDataType.VARCHAR.nullable(false).defaultValue(org.jooq.impl.DSL.field("USER", org.jooq.impl.SQLDataType.VARCHAR)), this, "");
 
     /**
      * Create a <code>users</code> table reference
