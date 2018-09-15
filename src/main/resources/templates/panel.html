@@ -11,7 +11,45 @@
 </head>
 <body>
 
+<section layout:fragment="content">
+    <div class="container">
+        <form action="#" th:action="@{/updateMatchDatabase}" th:object="${MatchDate}" method="post">
+            <div class="row">
+                <div class="input-group input-group-sm mb-3">
+                    <div class="col">
+                        <div class="input-group-prepend">
+                                                <span class="input-group-text"
+                                                      id="inputGroup-sizing-sm">Date from:</span>
+                        </div>
 
+                        <input type="date" class="form-control" aria-label="Small"
+                               aria-describedby="inputGroup-sizing-sm"
+                               th:field="*{dateFrom}"/>
+                        <div class="input-group-prepend">
+                                            <span class="input-group-text"
+                                                  id="inputGroup-sizing-sm">Date to:</span>
+                        </div>
+                        <input type="date" class="form-control" aria-label="Small"
+                               aria-describedby="inputGroup-sizing-sm"
+                               th:field="*{dateTo}"/>
+                    </div>
+
+                    <div class="col"><input class="btn btn-success" type="submit" value="Submit"/>
+                        <input type="reset" class="btn btn-outline-success" value="Reset"/>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+
+    <form action="#" th:action="@{/manageUser}" method="post">
+        <select class="form-control" >
+            <option th:each="user: ${UsersList}" th:value="${user.getUserName()}"
+                    th:text="${user.getUserName()}" th:selected="${user}"></option>
+        </select>
+    </form>
+
+</section>
 
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
         integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
