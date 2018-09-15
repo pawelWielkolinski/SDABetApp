@@ -52,7 +52,6 @@ public class LoginController {
             httpSession.setAttribute("points", loginU.getPoints());
             httpSession.setAttribute("isLogin", "true");
             httpSession.setAttribute("userName", loginU.getUserName());
-            httpSession.setAttribute("role", loginU.getUserRole());
 
             model.addAttribute("matchDate", new MatchDate());
             model.addAttribute("matchTeamName", new MatchTeamName());
