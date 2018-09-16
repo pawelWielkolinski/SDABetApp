@@ -62,10 +62,10 @@ public class LoginController {
 
     }
 
-    @RequestMapping("/logout")
+    @RequestMapping("/logoutUser")
     public String logout() {
         httpSession.invalidate();
-        return "/logout";
+        return "logout";
 
     }
 }
