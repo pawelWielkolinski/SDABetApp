@@ -12,6 +12,7 @@ import sda.match.model.Matches;
 import sda.match.model.MatchesModel;
 import sda.user.UserRepository;
 import sda.user.UserService;
+import sda.user.UserToManage;
 
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
@@ -37,6 +38,7 @@ public class AdminController {
                 .collect(Collectors.toList());
         model.addAttribute("UsersList", panelUsers);
         model.addAttribute("MatchDate", new MatchDate());
+        model.addAttribute("UserToManage", new UserToManage());
         return "panel";
     }
 
@@ -51,8 +53,9 @@ public class AdminController {
     }
 
     @PostMapping("/deleteUser")
-    public String deleteUser(Model model) {
+    public String deleteUser(@ModelAttribute UserToManage userToManage) {
 
+        userRepository.delete(userToManage.getIdUserToManage());
 
         return "redirect:panel";
     }
