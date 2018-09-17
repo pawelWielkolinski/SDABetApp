@@ -34,7 +34,7 @@ public class AdminController {
     public String admin(Model model) {
         List<UsersRecord> users = userRepository.getAll();
         List<UsersRecord> panelUsers = users.stream()
-                .filter(usersRecord -> !usersRecord.getUserName().equals(session.getAttribute("userName")))
+                .filter(usersRecord -> !usersRecord.getUserRole().equals("ADMIN"))
                 .collect(Collectors.toList());
         model.addAttribute("UsersList", panelUsers);
         model.addAttribute("MatchDate", new MatchDate());
@@ -55,7 +55,15 @@ public class AdminController {
     @PostMapping("/deleteUser")
     public String deleteUser(@ModelAttribute UserToManage userToManage) {
 
-        userRepository.delete(userToManage.getIdUserToManage());
+        userService.deleteUser(userToManage.getIdUserToManage());
+
+        return "redirect:panel";
+    }
+
+    @PostMapping("/makeUserAdmin")
+    public String userToAdmin(@ModelAttribute UserToManage userToManage) {
+
+        userService.makeUserAdmin(userToManage.getIdUserToManage());
 
         return "redirect:panel";
     }

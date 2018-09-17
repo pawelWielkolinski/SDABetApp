@@ -62,4 +62,11 @@ public class UserService {
     }
 
 
+    public void makeUserAdmin(Integer id) {
+
+        UsersRecord usersRecord = userRepository.getUserById(id);
+        usersRecord.setUserRole("ADMIN");
+        userRepository.insert(usersRecord);
+
+    }
 }

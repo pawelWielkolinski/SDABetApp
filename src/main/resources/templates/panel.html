@@ -42,13 +42,22 @@
         </form>
     </div>
 
+    <form action="#" th:action="@{/makeUserAdmin}" th:object="${UserToManage}" method="post">
+        <select class="form-control" th:field="*{idUserToManage}">
+            <option value=""> -- </option>
+            <option th:each="user: ${UsersList}" th:utext="${user.getUserName()}" th:value="${user.getIdUser()}">
+            </option>
+        </select>
+        <button type="submit" class="btn btn-outline-info">Make admin</button>
+    </form>
+
     <form action="#" th:action="@{/deleteUser}" th:object="${UserToManage}" method="post">
         <select class="form-control" th:field="*{idUserToManage}">
             <option value=""> -- </option>
             <option th:each="user: ${UsersList}" th:utext="${user.getUserName()}" th:value="${user.getIdUser()}">
             </option>
         </select>
-        <button type="submit" class="btn btn-outline-success">Delete user</button>
+        <button type="submit" class="btn btn-outline-danger">Delete user</button>
     </form>
 
 </section>
