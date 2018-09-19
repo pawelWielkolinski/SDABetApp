@@ -5,18 +5,24 @@ import org.springframework.stereotype.Service;
 import sda.db.data.generated.tables.records.BetsRecord;
 import sda.db.data.generated.tables.records.MatchesRecord;
 import sda.match.MatchRepository;
+import sda.match.MatchServices;
 
 import java.sql.Date;
 import java.time.LocalDate;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class BetService {
 
-    public void givePoints() {
-        MatchRepository matchRepository = new MatchRepository();
-        BetRepository betRepository = new BetRepository();
+    @Autowired
+    private BetRepository betRepository;
+    @Autowired
+    private MatchRepository matchRepository;
+    @Autowired
+    private MatchServices matchServices;
 
+    public void givePoints() {
         List<MatchesRecord> matchesWithPresentScore = matchRepository.getByPresentScore();
         for (MatchesRecord matchWitchScore : matchesWithPresentScore) {
 
@@ -55,7 +61,6 @@ public class BetService {
 
     public void saveBet(BetForm betInfo) {
 
-        BetRepository betRepository = new BetRepository();
         BetsRecord betsRecord = new BetsRecord();
 
         if(betRepository.getBetByMatchIdAndUserId(betInfo.getMatchId(),betInfo.getUserId())==null) {
@@ -75,5 +80,14 @@ public class BetService {
 
         betRepository.storeBet(betsRecord);
 
+    }
+
+    public List<BetsRecord> getUserBetsToShowInScore(Integer idUser) {
+
+        List<BetsRecord> userBetsWithPoints = betRepository.getBetsByUserId(idUser);
+
+        return userBetsWithPoints.stream()
+                .filter(betsRecord -> !matchServices.isVisible(matchRepository.getById(betsRecord.getIdMatch())))
+                .collect(Collectors.toList());
     }
 }

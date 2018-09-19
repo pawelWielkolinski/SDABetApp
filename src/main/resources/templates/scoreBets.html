@@ -1,11 +1,10 @@
-<!DOCTYPE html>
+
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:th="http://www.thymeleaf.org"
       xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout"
       layout:decorator="layout">>
-
 <head>
-    <title>Scoreboard</title>
+    <title>Bets</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
           integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
@@ -16,23 +15,26 @@
         <table class="table table-striped">
             <thead class="thead-dark">
             <tr>
-                <th scope="col">USER</th>
+                <th scope="col">MATCH DATE</th>
+                <th scope="col">HOME TEAM</th>
+                <th scope="col">AWAY TEAM</th>
+                <th scope="col">HT SCORE</th>
+                <th scope="col">AT SCORE</th>
+                <th scope="col">HT BET</th>
+                <th scope="col">AT BET</th>
                 <th scope="col">POINTS</th>
-                <th scope="col">BETS</th>
             </tr>
             </thead>
             <tbody>
-            <tr th:each="points :${scores}">
-                <td><p th:text="${points.getUserName()}"></th>
-                <td><P th:text="${points.getPoints()}"></P></td>
-                <td>
-                    <form action="#" th:action="@{/scoreUserBets}"
-                          th:object="${userToManage}"
-                          method="post">
-                        <input type="hidden" th:value="${points.getIdUser()}" th:attr="name='idUserToManage'"/>
-                        <button type="submit" class="btn btn-outline-info btn-lg btn-block">Check bets</button>
-                    </form>
-                </td>
+            <tr th:each="bets :${userBets}">
+                <td><p th:text="${matchRepo.getById(bets.getIdMatch()).getStartDate()}"/></td>
+                <td><p th:text="${matchRepo.getById(bets.getIdMatch()).getHomeTeam()}"/></td>
+                <td><p th:text="${matchRepo.getById(bets.getIdMatch()).getAwayTeam()}"/></td>
+                <td><p th:text="${matchRepo.getById(bets.getIdMatch()).getHomeTeamGoals()}"/></td>
+                <td><p th:text="${matchRepo.getById(bets.getIdMatch()).getAwayTeamGoals()}"/></td>
+                <td><p th:text="${bets.getHomeTeamBet()}"/></td>
+                <td><p th:text="${bets.getAwayTeamBet()}"/></td>
+                <td><p th:text="${bets.getPoints()}"/></td>
             </tr>
             </tbody>
         </table>

@@ -71,7 +71,7 @@ public class BetRepository extends DatabaseAccess {
         }
     }
 
-    public List<BetsRecord> userBetsWithPoints(Integer idUser) {
+    public List<BetsRecord> getUserBetsWithPoints(Integer idUser) {
         try (Connection conn = connection()) {
             DSLContext ctx = jooq(conn);
             Bets bets = Tables.BETS;

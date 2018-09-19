@@ -25,7 +25,7 @@ public class UserService {
         List<UsersRecord> allUsers = userRepository.getAll();
 
         for (UsersRecord user : allUsers) {
-            List<BetsRecord> betsWithPoints = betRepository.userBetsWithPoints(user.getIdUser());
+            List<BetsRecord> betsWithPoints = betRepository.getUserBetsWithPoints(user.getIdUser());
 
             Integer userPoints = 0;
 
