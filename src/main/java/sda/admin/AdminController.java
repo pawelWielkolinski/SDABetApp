@@ -48,6 +48,7 @@ public class AdminController {
         MatchesModel matchesModel = new MatchesModel();
         Matches matchesFromApi = matchesModel.getMatchesFromApi(matchDate.getDateFrom(), matchDate.getDateTo());
         matchesModel.insertMatchesToDatabase(matchesFromApi);
+        userService.addPoints();
 
         return "redirect:panel";
     }

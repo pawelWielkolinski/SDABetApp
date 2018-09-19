@@ -23,9 +23,7 @@ public class ScoreController {
     public String scores (Model model){
         List<UsersRecord> results = scoreService.showScores();
 
-        userService.addPoints();
         model.addAttribute("scores",results);
-
 
         return "scores";
     }
