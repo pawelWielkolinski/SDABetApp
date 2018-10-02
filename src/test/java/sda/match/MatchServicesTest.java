@@ -91,7 +91,7 @@ public class MatchServicesTest extends DatabaseAccess {
     }
 
     @Test
-    public void shouldOnlyGetMatchesThatTakePlaceAfterStartDateAndStartTime(){
+    public void shouldGetTrueForVisibleMatchesAndFalseForNotVisibleOnes(){
         List<MatchesRecord> matchesRecords = new ArrayList<>();
         matchesRecords.add(VISIBLE_DATE_MATCH);
         matchesRecords.add(VISIBLE_TIME_MATCH);
