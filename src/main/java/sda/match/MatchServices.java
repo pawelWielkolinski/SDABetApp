@@ -1,12 +1,12 @@
 package sda.match;
 
+import org.jooq.DSLContext;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import sda.db.data.generated.tables.records.MatchesRecord;
-import sda.match.model.Match;
-import sda.match.model.Matches;
-import sda.match.model.MatchesModel;
 
 import java.io.IOException;
+import java.sql.Connection;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.ArrayList;
@@ -16,10 +16,16 @@ import java.util.Map;
 
 @Service
 public class MatchServices {
+
+    private final MatchRepository matchRepository;
+
+    @Autowired
+    public MatchServices(MatchRepository matchRepository) {
+        this.matchRepository = matchRepository;
+    }
+
+
     public List<MatchesRecord> show(String dateFrom, String dateTo) throws IOException {
-        MatchRepository matchRepository = new MatchRepository();
-//        MatchesModel matchesModel = new MatchesModel();
-//        matchesModel.insertMatchesToDatabase(matchesModel.getMatchesFromApi(dateFrom,dateTo));
 
         List<MatchesRecord> matches = new ArrayList<>();
         matches = matchRepository.getByDate(dateFrom,dateTo);
@@ -28,9 +34,6 @@ public class MatchServices {
     }
 
     public List<MatchesRecord> showWithLimit() throws IOException {
-        MatchRepository matchRepository = new MatchRepository();
-//        MatchesModel matchesModel = new MatchesModel();
-//        matchesModel.insertMatchesToDatabase(matchesModel.getMatchesFromApi(dateFrom,dateTo));
 
         List<MatchesRecord> matches = new ArrayList<>();
         matches = matchRepository.getByDateLimit5();
@@ -39,7 +42,6 @@ public class MatchServices {
     }
 
     public List<MatchesRecord> showByName(String name) throws IOException{
-        MatchRepository matchRepository = new MatchRepository();
 
         List<MatchesRecord> matches = new ArrayList<>();
         matches = matchRepository.getByTeamName(name);
